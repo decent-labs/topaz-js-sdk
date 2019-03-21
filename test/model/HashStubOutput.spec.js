@@ -28,25 +28,20 @@
 }(this, function(expect, TopazApi) {
   'use strict';
 
-  var instance;
-
-  beforeEach(function() {
-    instance = new TopazApi.HashStubOutput();
-  });
-
   describe('HashStubOutput', function() {
+    var instance, hashes;
+  
+    beforeEach(function() {
+      hashes = [];
+      instance = new TopazApi.HashStubOutput(hashes);
+    });
+
     it('should create an instance of HashStubOutput', function() {
-      // uncomment below and update the code to test HashStubOutput
-      //var instance = new TopazApi.HashStubOutput();
-      //expect(instance).to.be.a(TopazApi.HashStubOutput);
+      expect(instance).to.be.a(TopazApi.HashStubOutput);
     });
 
     it('should have the property hashes (base name: "hashes")', function() {
-      // uncomment below and update the code to test the property hashes
-      //var instance = new TopazApi.HashStubOutput();
-      //expect(instance).to.be();
+      expect(instance.hashes).to.be(hashes);
     });
-
   });
-
 }));
