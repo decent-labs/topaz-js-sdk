@@ -36,9 +36,7 @@
     });
 
     it('should create an instance of HashOutputDetailed', function() {
-      // uncomment below and update the code to test HashOutputDetailed
-      //var instance = new TopazApi.HashOutputDetailed();
-      //expect(instance).to.be.a(TopazApi.HashOutputDetailed);
+      expect(instance).to.be.a(TopazApi.HashOutputDetailed);
     });
   });
 }));

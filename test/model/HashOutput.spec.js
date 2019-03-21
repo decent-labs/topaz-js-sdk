@@ -17,52 +17,49 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD.
-    define(['expect.js', '../../src/index'], factory);
+    define(['expect.js', 'crypto', 'uuid/v4', '../../src/index'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    factory(require('expect.js'), require('../../src/index'));
+    factory(require('expect.js'), require('crypto'), require('uuid/v4'), require('../../src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.TopazApi);
+    factory(root.expect, root.uuidv4, root.TopazApi);
   }
-}(this, function(expect, TopazApi) {
+}(this, function(expect, crypto, uuidv4, TopazApi) {
   'use strict';
 
   describe('HashOutput', function() {
-    var instance;
+    var instance, hash, hashId, objectId, proofId, unixTimestamp;
   
     beforeEach(function() {
-      instance = new TopazApi.HashOutput();
+      hash = crypto.createHmac('sha256', '')
+        .update(Math.random().toString(36).substr(2, 5))
+        .digest('hex');
+      hashId = uuidv4();
+      unixTimestamp = Date.now()
+      objectId = uuidv4();
+      proofId = uuidv4();
+      instance = new TopazApi.HashOutput(hash, hashId, unixTimestamp, objectId, proofId);
     });
 
     it('should create an instance of HashOutput', function() {
-      // uncomment below and update the code to test HashOutput
-      //var instance = new TopazApi.HashOutput();
-      //expect(instance).to.be.a(TopazApi.HashOutput);
+      expect(instance).to.be.a(TopazApi.HashOutput);
     });
 
     it('should have the property id (base name: "id")', function() {
-      // uncomment below and update the code to test the property id
-      //var instance = new TopazApi.HashOutput();
-      //expect(instance).to.be();
+      expect(instance.id).to.be(hashId);
     });
 
     it('should have the property unixTimestamp (base name: "unixTimestamp")', function() {
-      // uncomment below and update the code to test the property unixTimestamp
-      //var instance = new TopazApi.HashOutput();
-      //expect(instance).to.be();
+      expect(instance.unixTimestamp).to.be(unixTimestamp);
     });
 
     it('should have the property objectId (base name: "objectId")', function() {
-      // uncomment below and update the code to test the property objectId
-      //var instance = new TopazApi.HashOutput();
-      //expect(instance).to.be();
+      expect(instance.objectId).to.be(objectId);
     });
 
     it('should have the property proofId (base name: "proofId")', function() {
-      // uncomment below and update the code to test the property proofId
-      //var instance = new TopazApi.HashOutput();
-      //expect(instance).to.be();
+      expect(instance.proofId).to.be(proofId);
     });
   });
 }));

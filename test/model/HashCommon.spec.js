@@ -17,34 +17,33 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD.
-    define(['expect.js', '../../src/index'], factory);
+    define(['expect.js', 'crypto', '../../src/index'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    factory(require('expect.js'), require('../../src/index'));
+    factory(require('expect.js'), require('crypto'), require('../../src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.TopazApi);
+    factory(root.expect, root.uuidv4, root.TopazApi);
   }
-}(this, function(expect, TopazApi) {
+}(this, function(expect, crypto, TopazApi) {
   'use strict';
 
   describe('HashCommon', function() {
-    var instance;
+    var instance, hash;
 
     beforeEach(function() {
-      instance = new TopazApi.HashCommon();
+      hash = crypto.createHmac('sha256', '')
+        .update(Math.random().toString(36).substr(2, 5))
+        .digest('hex');
+      instance = new TopazApi.HashCommon(hash);
     });
 
     it('should create an instance of HashCommon', function() {
-      // uncomment below and update the code to test HashCommon
-      //var instance = new TopazApi.HashCommon();
-      //expect(instance).to.be.a(TopazApi.HashCommon);
+      expect(instance).to.be.a(TopazApi.HashCommon);
     });
 
     it('should have the property hash (base name: "hash")', function() {
-      // uncomment below and update the code to test the property hash
-      //var instance = new TopazApi.HashCommon();
-      //expect(instance).to.be();
+      expect(instance.hash).to.be(hash);
     });
   });
 }));

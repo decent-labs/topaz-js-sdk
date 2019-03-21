@@ -36,9 +36,7 @@
     });
 
     it('should create an instance of HashInput', function() {
-      // uncomment below and update the code to test HashInput
-      //var instance = new TopazApi.HashInput();
-      //expect(instance).to.be.a(TopazApi.HashInput);
+      expect(instance).to.be.a(TopazApi.HashInput);
     });
   });
 }));
