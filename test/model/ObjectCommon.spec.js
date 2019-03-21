@@ -28,19 +28,15 @@
 }(this, function(expect, TopazApi) {
   'use strict';
 
-  var instance;
-
-  beforeEach(function() {
-    instance = new TopazApi.ObjectCommon();
-  });
-
   describe('ObjectCommon', function() {
-    it('should create an instance of ObjectCommon', function() {
-      // uncomment below and update the code to test ObjectCommon
-      //var instance = new TopazApi.ObjectCommon();
-      //expect(instance).to.be.a(TopazApi.ObjectCommon);
+    var instance;
+
+    beforeEach(function() {
+      instance = new TopazApi.ObjectCommon();
     });
 
+    it('should create an instance of ObjectCommon', function() {
+      expect(instance).to.be.a(TopazApi.ObjectCommon);
+    });
   });
-
 }));

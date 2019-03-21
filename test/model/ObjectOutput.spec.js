@@ -17,42 +17,36 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD.
-    define(['expect.js', '../../src/index'], factory);
+    define(['expect.js', 'uuid/v4', '../../src/index'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    factory(require('expect.js'), require('../../src/index'));
+    factory(require('expect.js'), require('uuid/v4'), require('../../src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.TopazApi);
+    factory(root.expect, root.uuidv4, root.TopazApi);
   }
-}(this, function(expect, TopazApi) {
+}(this, function(expect, uuidv4, TopazApi) {
   'use strict';
 
-  var instance;
-
-  beforeEach(function() {
-    instance = new TopazApi.ObjectOutput();
-  });
-
   describe('ObjectOutput', function() {
+    var instance, appId, objectId;
+
+    beforeEach(function() {
+      appId = uuidv4();
+      objectId = uuidv4();
+      instance = new TopazApi.ObjectOutput(appId, objectId);
+    });
+
     it('should create an instance of ObjectOutput', function() {
-      // uncomment below and update the code to test ObjectOutput
-      //var instance = new TopazApi.ObjectOutput();
-      //expect(instance).to.be.a(TopazApi.ObjectOutput);
+      expect(instance).to.be.a(TopazApi.ObjectOutput);
     });
 
     it('should have the property appId (base name: "appId")', function() {
-      // uncomment below and update the code to test the property appId
-      //var instance = new TopazApi.ObjectOutput();
-      //expect(instance).to.be();
+      expect(instance.appId).to.be(appId);
     });
 
     it('should have the property id (base name: "id")', function() {
-      // uncomment below and update the code to test the property id
-      //var instance = new TopazApi.ObjectOutput();
-      //expect(instance).to.be();
+      expect(instance.id).to.be(objectId);
     });
-
   });
-
 }));

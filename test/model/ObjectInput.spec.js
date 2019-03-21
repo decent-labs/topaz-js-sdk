@@ -28,19 +28,15 @@
 }(this, function(expect, TopazApi) {
   'use strict';
 
-  var instance;
-
-  beforeEach(function() {
-    instance = new TopazApi.ObjectInput();
-  });
-
   describe('ObjectInput', function() {
-    it('should create an instance of ObjectInput', function() {
-      // uncomment below and update the code to test ObjectInput
-      //var instance = new TopazApi.ObjectInput();
-      //expect(instance).to.be.a(TopazApi.ObjectInput);
+    var instance;
+
+    beforeEach(function() {
+      instance = new TopazApi.ObjectInput();
     });
 
+    it('should create an instance of ObjectInput', function() {
+      expect(instance).to.be.a(TopazApi.ObjectInput);
+    });
   });
-
 }));
