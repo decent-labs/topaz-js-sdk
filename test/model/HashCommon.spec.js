@@ -28,13 +28,13 @@
 }(this, function(expect, TopazApi) {
   'use strict';
 
-  var instance;
-
-  beforeEach(function() {
-    instance = new TopazApi.HashCommon();
-  });
-
   describe('HashCommon', function() {
+    var instance;
+
+    beforeEach(function() {
+      instance = new TopazApi.HashCommon();
+    });
+
     it('should create an instance of HashCommon', function() {
       // uncomment below and update the code to test HashCommon
       //var instance = new TopazApi.HashCommon();
@@ -46,7 +46,5 @@
       //var instance = new TopazApi.HashCommon();
       //expect(instance).to.be();
     });
-
   });
-
 }));

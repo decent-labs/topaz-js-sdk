@@ -28,19 +28,17 @@
 }(this, function(expect, TopazApi) {
   'use strict';
 
-  var instance;
-
-  beforeEach(function() {
-    instance = new TopazApi.HashInput();
-  });
-
   describe('HashInput', function() {
+    var instance;
+
+    beforeEach(function() {
+      instance = new TopazApi.HashInput();
+    });
+
     it('should create an instance of HashInput', function() {
       // uncomment below and update the code to test HashInput
       //var instance = new TopazApi.HashInput();
       //expect(instance).to.be.a(TopazApi.HashInput);
     });
-
   });
-
 }));

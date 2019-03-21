@@ -28,13 +28,13 @@
 }(this, function(expect, TopazApi) {
   'use strict';
 
-  var instance;
-
-  beforeEach(function() {
-    instance = new TopazApi.HashOutput();
-  });
-
   describe('HashOutput', function() {
+    var instance;
+  
+    beforeEach(function() {
+      instance = new TopazApi.HashOutput();
+    });
+
     it('should create an instance of HashOutput', function() {
       // uncomment below and update the code to test HashOutput
       //var instance = new TopazApi.HashOutput();
@@ -64,7 +64,5 @@
       //var instance = new TopazApi.HashOutput();
       //expect(instance).to.be();
     });
-
   });
-
 }));
