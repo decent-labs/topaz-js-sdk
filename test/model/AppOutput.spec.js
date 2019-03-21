@@ -17,58 +17,36 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD.
-    define(['expect.js', '../../src/index'], factory);
+    define(['expect.js', 'uuid/v4', '../../src/index'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    factory(require('expect.js'), require('../../src/index'));
+    factory(require('expect.js'), require('uuid/v4'), require('../../src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.TopazApi);
+    factory(root.expect, root.uuidv4, root.TopazApi);
   }
-}(this, function(expect, TopazApi) {
+}(this, function(expect, uuidv4, TopazApi) {
   'use strict';
 
-  var instance;
-
-  beforeEach(function() {
-    instance = new TopazApi.AppOutput();
-  });
-
-  var getProperty = function(object, getter, property) {
-    // Use getter method if present; otherwise, get the property directly.
-    if (typeof object[getter] === 'function')
-      return object[getter]();
-    else
-      return object[property];
-  }
-
-  var setProperty = function(object, setter, property, value) {
-    // Use setter method if present; otherwise, set the property directly.
-    if (typeof object[setter] === 'function')
-      object[setter](value);
-    else
-      object[property] = value;
-  }
-
   describe('AppOutput', function() {
+    var instance, appId, userId;
+
+    beforeEach(function() {
+      appId = uuidv4();
+      userId = uuidv4();
+      instance = new TopazApi.AppOutput("test app", 30, appId, userId)
+    });
+
     it('should create an instance of AppOutput', function() {
-      // uncomment below and update the code to test AppOutput
-      //var instance = new TopazApi.AppOutput();
-      //expect(instance).to.be.a(TopazApi.AppOutput);
+      expect(instance).to.be.a(TopazApi.AppOutput);
     });
 
     it('should have the property id (base name: "id")', function() {
-      // uncomment below and update the code to test the property id
-      //var instance = new TopazApi.AppOutput();
-      //expect(instance).to.be();
+      expect(instance.id).to.be(appId);
     });
 
     it('should have the property userId (base name: "userId")', function() {
-      // uncomment below and update the code to test the property userId
-      //var instance = new TopazApi.AppOutput();
-      //expect(instance).to.be();
+      expect(instance.userId).to.be(userId);
     });
-
   });
-
 }));

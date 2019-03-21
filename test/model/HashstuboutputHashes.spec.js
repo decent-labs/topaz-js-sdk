@@ -17,58 +17,38 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD.
-    define(['expect.js', '../../src/index'], factory);
+    define(['expect.js', 'crypto', 'uuid/v4', '../../src/index'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    factory(require('expect.js'), require('../../src/index'));
+    factory(require('expect.js'), require('crypto'), require('uuid/v4'), require('../../src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.TopazApi);
+    factory(root.expect, root.crypto, root.uuidv4, root.TopazApi);
   }
-}(this, function(expect, TopazApi) {
+}(this, function(expect, crypto, uuidv4, TopazApi) {
   'use strict';
 
-  var instance;
-
-  beforeEach(function() {
-    instance = new TopazApi.HashstuboutputHashes();
-  });
-
-  var getProperty = function(object, getter, property) {
-    // Use getter method if present; otherwise, get the property directly.
-    if (typeof object[getter] === 'function')
-      return object[getter]();
-    else
-      return object[property];
-  }
-
-  var setProperty = function(object, setter, property, value) {
-    // Use setter method if present; otherwise, set the property directly.
-    if (typeof object[setter] === 'function')
-      object[setter](value);
-    else
-      object[property] = value;
-  }
-
   describe('HashstuboutputHashes', function() {
+    var instance, hash, hashId;
+  
+    beforeEach(function() {
+      hash = crypto.createHmac('sha256', '')
+        .update(Math.random().toString(36).substr(2, 5))
+        .digest('hex');
+      hashId = uuidv4();
+      instance = new TopazApi.HashstuboutputHashes(hashId, hash);
+    });
+
     it('should create an instance of HashstuboutputHashes', function() {
-      // uncomment below and update the code to test HashstuboutputHashes
-      //var instance = new TopazApi.HashstuboutputHashes();
-      //expect(instance).to.be.a(TopazApi.HashstuboutputHashes);
+      expect(instance).to.be.a(TopazApi.HashstuboutputHashes);
     });
 
     it('should have the property id (base name: "id")', function() {
-      // uncomment below and update the code to test the property id
-      //var instance = new TopazApi.HashstuboutputHashes();
-      //expect(instance).to.be();
+      expect(instance.id).to.be(hashId);
     });
 
     it('should have the property hash (base name: "hash")', function() {
-      // uncomment below and update the code to test the property hash
-      //var instance = new TopazApi.HashstuboutputHashes();
-      //expect(instance).to.be();
+      expect(instance.hash).to.be(hash);
     });
-
   });
-
 }));

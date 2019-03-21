@@ -28,35 +28,15 @@
 }(this, function(expect, TopazApi) {
   'use strict';
 
-  var instance;
-
-  beforeEach(function() {
-    instance = new TopazApi.ObjectInput();
-  });
-
-  var getProperty = function(object, getter, property) {
-    // Use getter method if present; otherwise, get the property directly.
-    if (typeof object[getter] === 'function')
-      return object[getter]();
-    else
-      return object[property];
-  }
-
-  var setProperty = function(object, setter, property, value) {
-    // Use setter method if present; otherwise, set the property directly.
-    if (typeof object[setter] === 'function')
-      object[setter](value);
-    else
-      object[property] = value;
-  }
-
   describe('ObjectInput', function() {
-    it('should create an instance of ObjectInput', function() {
-      // uncomment below and update the code to test ObjectInput
-      //var instance = new TopazApi.ObjectInput();
-      //expect(instance).to.be.a(TopazApi.ObjectInput);
+    var instance;
+
+    beforeEach(function() {
+      instance = new TopazApi.ObjectInput();
     });
 
+    it('should create an instance of ObjectInput', function() {
+      expect(instance).to.be.a(TopazApi.ObjectInput);
+    });
   });
-
 }));

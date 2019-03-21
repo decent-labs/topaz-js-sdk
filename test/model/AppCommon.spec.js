@@ -28,47 +28,23 @@
 }(this, function(expect, TopazApi) {
   'use strict';
 
-  var instance;
-
-  beforeEach(function() {
-    instance = new TopazApi.AppCommon();
-  });
-
-  var getProperty = function(object, getter, property) {
-    // Use getter method if present; otherwise, get the property directly.
-    if (typeof object[getter] === 'function')
-      return object[getter]();
-    else
-      return object[property];
-  }
-
-  var setProperty = function(object, setter, property, value) {
-    // Use setter method if present; otherwise, set the property directly.
-    if (typeof object[setter] === 'function')
-      object[setter](value);
-    else
-      object[property] = value;
-  }
-
   describe('AppCommon', function() {
+    var instance;
+
+    beforeEach(function() {
+      instance = new TopazApi.AppCommon("test app", 30);
+    });
+
     it('should create an instance of AppCommon', function() {
-      // uncomment below and update the code to test AppCommon
-      //var instance = new TopazApi.AppCommon();
-      //expect(instance).to.be.a(TopazApi.AppCommon);
+      expect(instance).to.be.a(TopazApi.AppCommon);
     });
 
     it('should have the property name (base name: "name")', function() {
-      // uncomment below and update the code to test the property name
-      //var instance = new TopazApi.AppCommon();
-      //expect(instance).to.be();
+      expect(instance.name).to.be("test app");
     });
 
     it('should have the property interval (base name: "interval")', function() {
-      // uncomment below and update the code to test the property interval
-      //var instance = new TopazApi.AppCommon();
-      //expect(instance).to.be();
+      expect(instance.interval).to.be(30);
     });
-
   });
-
 }));

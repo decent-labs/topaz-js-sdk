@@ -50,15 +50,16 @@
    * @param id {String} 
    * @param unixTimestamp {Number} 
    * @param objectId {String} 
+   * @param proofId {String}
    */
-  var exports = function(hash, id, unixTimestamp, objectId) {
+  var exports = function(hash, id, unixTimestamp, objectId, proofId) {
     var _this = this;
 
     HashCommon.call(_this, hash);
     _this['id'] = id;
     _this['unixTimestamp'] = unixTimestamp;
     _this['objectId'] = objectId;
-
+    _this['proofId'] = proofId;
   };
 
   /**

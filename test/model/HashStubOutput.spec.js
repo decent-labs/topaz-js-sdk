@@ -28,41 +28,20 @@
 }(this, function(expect, TopazApi) {
   'use strict';
 
-  var instance;
-
-  beforeEach(function() {
-    instance = new TopazApi.HashStubOutput();
-  });
-
-  var getProperty = function(object, getter, property) {
-    // Use getter method if present; otherwise, get the property directly.
-    if (typeof object[getter] === 'function')
-      return object[getter]();
-    else
-      return object[property];
-  }
-
-  var setProperty = function(object, setter, property, value) {
-    // Use setter method if present; otherwise, set the property directly.
-    if (typeof object[setter] === 'function')
-      object[setter](value);
-    else
-      object[property] = value;
-  }
-
   describe('HashStubOutput', function() {
+    var instance, hashes;
+  
+    beforeEach(function() {
+      hashes = [];
+      instance = new TopazApi.HashStubOutput(hashes);
+    });
+
     it('should create an instance of HashStubOutput', function() {
-      // uncomment below and update the code to test HashStubOutput
-      //var instance = new TopazApi.HashStubOutput();
-      //expect(instance).to.be.a(TopazApi.HashStubOutput);
+      expect(instance).to.be.a(TopazApi.HashStubOutput);
     });
 
     it('should have the property hashes (base name: "hashes")', function() {
-      // uncomment below and update the code to test the property hashes
-      //var instance = new TopazApi.HashStubOutput();
-      //expect(instance).to.be();
+      expect(instance.hashes).to.be(hashes);
     });
-
   });
-
 }));

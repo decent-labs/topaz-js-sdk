@@ -28,35 +28,15 @@
 }(this, function(expect, TopazApi) {
   'use strict';
 
-  var instance;
-
-  beforeEach(function() {
-    instance = new TopazApi.ProofCommon();
-  });
-
-  var getProperty = function(object, getter, property) {
-    // Use getter method if present; otherwise, get the property directly.
-    if (typeof object[getter] === 'function')
-      return object[getter]();
-    else
-      return object[property];
-  }
-
-  var setProperty = function(object, setter, property, value) {
-    // Use setter method if present; otherwise, set the property directly.
-    if (typeof object[setter] === 'function')
-      object[setter](value);
-    else
-      object[property] = value;
-  }
-
   describe('ProofCommon', function() {
-    it('should create an instance of ProofCommon', function() {
-      // uncomment below and update the code to test ProofCommon
-      //var instance = new TopazApi.ProofCommon();
-      //expect(instance).to.be.a(TopazApi.ProofCommon);
+    var instance;
+
+    beforeEach(function() {
+      instance = new TopazApi.ProofCommon();
     });
 
+    it('should create an instance of ProofCommon', function() {
+      expect(instance).to.be.a(TopazApi.ProofCommon);
+    });
   });
-
 }));
