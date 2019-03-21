@@ -45,11 +45,12 @@
    * Hash stub consisting of ID and Hash value
    * @alias module:model/HashStubOutput
    * @class
+   * @param hashes {Array}
    */
-  var exports = function() {
+  var exports = function(hashes) {
     var _this = this;
 
-
+    _this['hashes'] = hashes;
   };
 
   /**
