@@ -28,15 +28,15 @@
 }(this, function(expect, uuidv4, TopazApi) {
   'use strict';
 
-  var instance, appId, userId;
-
-  beforeEach(function() {
-    appId = uuidv4();
-    userId = uuidv4();
-    instance = new TopazApi.AppOutput("test app", 30, appId, userId)
-  });
-
   describe('AppOutput', function() {
+    var instance, appId, userId;
+
+    beforeEach(function() {
+      appId = uuidv4();
+      userId = uuidv4();
+      instance = new TopazApi.AppOutput("test app", 30, appId, userId)
+    });
+
     it('should create an instance of AppOutput', function() {
       expect(instance).to.be.a(TopazApi.AppOutput);
     });

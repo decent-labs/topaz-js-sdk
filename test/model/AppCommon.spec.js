@@ -28,13 +28,13 @@
 }(this, function(expect, TopazApi) {
   'use strict';
 
-  var instance;
-
-  beforeEach(function() {
-    instance = new TopazApi.AppCommon("test app", 30);
-  });
-
   describe('AppCommon', function() {
+    var instance;
+
+    beforeEach(function() {
+      instance = new TopazApi.AppCommon("test app", 30);
+    });
+
     it('should create an instance of AppCommon', function() {
       expect(instance).to.be.a(TopazApi.AppCommon);
     });
