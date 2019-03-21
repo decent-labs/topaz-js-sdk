@@ -17,60 +17,56 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD.
-    define(['expect.js', '../../src/index'], factory);
+    define(['expect.js', 'crypto', 'uuid/v4', '../../src/index'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    factory(require('expect.js'), require('../../src/index'));
+    factory(require('expect.js'), require('crypto'), require('uuid/v4'), require('../../src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.TopazApi);
+    factory(root.expect, root.crypto, root.uuidv4, root.TopazApi);
   }
-}(this, function(expect, TopazApi) {
+}(this, function(expect, crypto, uuidv4, TopazApi) {
   'use strict';
 
-  var instance;
-
-  beforeEach(function() {
-    instance = new TopazApi.ProofOutput();
-  });
-
   describe('ProofOutput', function() {
+    var instance, proofId, merkleRoot, ethTransaction, unixTimestamp, appId;
+  
+    beforeEach(function() {
+      proofId = uuidv4();
+      merkleRoot = crypto.createHmac('sha256', '')
+        .update(Math.random().toString(36).substr(2, 5))
+        .digest('hex');
+      ethTransaction = '0x' + crypto.createHmac('sha256', '')
+        .update(Math.random().toString(36).substr(2, 5))
+        .digest('hex');;
+      unixTimestamp = Date.now();
+      appId = uuidv4();
+
+      instance = new TopazApi.ProofOutput(proofId, merkleRoot, ethTransaction, unixTimestamp, appId);
+    });
+
     it('should create an instance of ProofOutput', function() {
-      // uncomment below and update the code to test ProofOutput
-      //var instance = new TopazApi.ProofOutput();
-      //expect(instance).to.be.a(TopazApi.ProofOutput);
+      expect(instance).to.be.a(TopazApi.ProofOutput);
     });
 
     it('should have the property id (base name: "id")', function() {
-      // uncomment below and update the code to test the property id
-      //var instance = new TopazApi.ProofOutput();
-      //expect(instance).to.be();
+      expect(instance.id).to.be(proofId);
     });
 
     it('should have the property merkleRoot (base name: "merkleRoot")', function() {
-      // uncomment below and update the code to test the property merkleRoot
-      //var instance = new TopazApi.ProofOutput();
-      //expect(instance).to.be();
+      expect(instance.merkleRoot).to.be(merkleRoot);
     });
 
     it('should have the property ethTransaction (base name: "ethTransaction")', function() {
-      // uncomment below and update the code to test the property ethTransaction
-      //var instance = new TopazApi.ProofOutput();
-      //expect(instance).to.be();
+      expect(instance.ethTransaction).to.be(ethTransaction);
     });
 
     it('should have the property unixTimestamp (base name: "unixTimestamp")', function() {
-      // uncomment below and update the code to test the property unixTimestamp
-      //var instance = new TopazApi.ProofOutput();
-      //expect(instance).to.be();
+      expect(instance.unixTimestamp).to.be(unixTimestamp);
     });
 
     it('should have the property appId (base name: "appId")', function() {
-      // uncomment below and update the code to test the property appId
-      //var instance = new TopazApi.ProofOutput();
-      //expect(instance).to.be();
+      expect(instance.appId).to.be(appId);
     });
-
   });
-
 }));

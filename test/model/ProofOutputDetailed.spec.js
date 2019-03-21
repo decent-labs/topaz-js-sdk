@@ -28,19 +28,15 @@
 }(this, function(expect, TopazApi) {
   'use strict';
 
-  var instance;
-
-  beforeEach(function() {
-    instance = new TopazApi.ProofOutputDetailed();
-  });
-
   describe('ProofOutputDetailed', function() {
-    it('should create an instance of ProofOutputDetailed', function() {
-      // uncomment below and update the code to test ProofOutputDetailed
-      //var instance = new TopazApi.ProofOutputDetailed();
-      //expect(instance).to.be.a(TopazApi.ProofOutputDetailed);
+    var instance;
+  
+    beforeEach(function() {
+      instance = new TopazApi.ProofOutputDetailed();
     });
 
+    it('should create an instance of ProofOutputDetailed', function() {
+      expect(instance).to.be.a(TopazApi.ProofOutputDetailed);
+    });
   });
-
 }));
