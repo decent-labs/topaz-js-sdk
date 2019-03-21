@@ -36,11 +36,7 @@
 
   describe('AppOutputDetailed', function() {
     it('should create an instance of AppOutputDetailed', function() {
-      // uncomment below and update the code to test AppOutputDetailed
-      //var instance = new TopazApi.AppOutputDetailed();
-      //expect(instance).to.be.a(TopazApi.AppOutputDetailed);
+      expect(instance).to.be.a(TopazApi.AppOutputDetailed);
     });
-
   });
-
 }));

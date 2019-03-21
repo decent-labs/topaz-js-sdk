@@ -36,11 +36,7 @@
 
   describe('AppInput', function() {
     it('should create an instance of AppInput', function() {
-      // uncomment below and update the code to test AppInput
-      //var instance = new TopazApi.AppInput();
-      //expect(instance).to.be.a(TopazApi.AppInput);
+      expect(instance).to.be.a(TopazApi.AppInput);
     });
-
   });
-
 }));
