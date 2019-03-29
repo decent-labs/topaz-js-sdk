@@ -17,15 +17,15 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD.
-    define(['expect.js', 'crypto', 'uuid/v4', '../../src/index'], factory);
+    define(['expect.js', '../helpers/random', 'uuid/v4', '../../src/index'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    factory(require('expect.js'), require('crypto'), require('uuid/v4'), require('../../src/index'));
+    factory(require('expect.js'), require('../helpers/random'), require('uuid/v4'), require('../../src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.crypto, root.uuidv4, root.TopazApi);
+    factory(root.expect, root.random, root.uuidv4, root.TopazApi);
   }
-}(this, function(expect, crypto, uuidv4, TopazApi) {
+}(this, function(expect, random, uuidv4, TopazApi) {
   'use strict';
 
   describe('ProofOutput', function() {
@@ -33,12 +33,8 @@
   
     beforeEach(function() {
       proofId = uuidv4();
-      merkleRoot = crypto.createHmac('sha256', '')
-        .update(Math.random().toString(36).substr(2, 5))
-        .digest('hex');
-      ethTransaction = '0x' + crypto.createHmac('sha256', '')
-        .update(Math.random().toString(36).substr(2, 5))
-        .digest('hex');;
+      merkleRoot = random.sha256HexHash();
+      ethTransaction = '0x' + random.sha256HexHash();
       unixTimestamp = Date.now();
       appId = uuidv4();
 
