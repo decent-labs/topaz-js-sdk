@@ -14,90 +14,71 @@
  *
  */
 
-(function(root, factory) {
-  if (typeof define === 'function' && define.amd) {
-    // AMD. Register as an anonymous module.
-    define(['ApiClient', 'model/AppOutput'], factory);
-  } else if (typeof module === 'object' && module.exports) {
-    // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('./AppOutput'));
-  } else {
-    // Browser globals (root is window)
-    if (!root.TopazApi) {
-      root.TopazApi = {};
-    }
-    root.TopazApi.AppOutputDetailed = factory(root.TopazApi.ApiClient, root.TopazApi.AppOutput);
+'use strict';
+
+const AppOutput = require('./AppOutput');
+
+
+/**
+ * The AppOutputDetailed model module.
+ * @module model/AppOutputDetailed
+ * @version 0.1.17
+ */
+
+/**
+ * Constructs a new <code>AppOutputDetailed</code>.
+ * The properties that are included when fetching a single Object.
+ * @alias module:model/AppOutputDetailed
+ * @class
+ * @implements module:model/AppOutput
+ * @param id {String} 
+ * @param userId {String} 
+ * @param name {String} 
+ * @param interval {Number} 
+ */
+var exports = function(id, userId, name, interval) {
+  var _this = this;
+
+  AppOutput.call(_this, name, interval, id, userId);
+};
+
+/**
+ * Constructs a <code>AppOutputDetailed</code> from a plain JavaScript object, optionally creating a new instance.
+ * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
+ * @param {Object} data The plain JavaScript object bearing properties of interest.
+ * @param {module:model/AppOutputDetailed} obj Optional instance to populate.
+ * @return {module:model/AppOutputDetailed} The populated <code>AppOutputDetailed</code> instance.
+ */
+exports.constructFromObject = function(data, obj) {
+  if (data) {
+    obj = obj || new exports();
+
+    AppOutput.constructFromObject(data, obj);
   }
-}(this, function(ApiClient, AppOutput) {
-  'use strict';
+  return obj;
+}
 
 
-
-
-  /**
-   * The AppOutputDetailed model module.
-   * @module model/AppOutputDetailed
-   * @version 0.1.17
-   */
-
-  /**
-   * Constructs a new <code>AppOutputDetailed</code>.
-   * The properties that are included when fetching a single Object.
-   * @alias module:model/AppOutputDetailed
-   * @class
-   * @implements module:model/AppOutput
-   * @param id {String} 
-   * @param userId {String} 
-   * @param name {String} 
-   * @param interval {Number} 
-   */
-  var exports = function(id, userId, name, interval) {
-    var _this = this;
-
-    AppOutput.call(_this, name, interval, id, userId);
-  };
-
-  /**
-   * Constructs a <code>AppOutputDetailed</code> from a plain JavaScript object, optionally creating a new instance.
-   * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
-   * @param {Object} data The plain JavaScript object bearing properties of interest.
-   * @param {module:model/AppOutputDetailed} obj Optional instance to populate.
-   * @return {module:model/AppOutputDetailed} The populated <code>AppOutputDetailed</code> instance.
-   */
-  exports.constructFromObject = function(data, obj) {
-    if (data) {
-      obj = obj || new exports();
-
-      AppOutput.constructFromObject(data, obj);
-    }
-    return obj;
-  }
-
-
-  // Implement AppOutput interface:
-  /**
-   * @member {String} name
-   */
+// Implement AppOutput interface:
+/**
+ * @member {String} name
+ */
 exports.prototype['name'] = undefined;
 
-  /**
-   * @member {Number} interval
-   */
+/**
+ * @member {Number} interval
+ */
 exports.prototype['interval'] = undefined;
 
-  /**
-   * @member {String} id
-   */
+/**
+ * @member {String} id
+ */
 exports.prototype['id'] = undefined;
 
-  /**
-   * @member {String} userId
-   */
+/**
+ * @member {String} userId
+ */
 exports.prototype['userId'] = undefined;
 
 
-
-  return exports;
-}));
-
-
+module.exports = exports;
