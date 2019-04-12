@@ -32,11 +32,11 @@ describe('AppsApi', function() {
 
   describe('createApp', function() {
     it('should call createApp successfully', function(done) {
-      const input = new TopazApi.AppInput("my first app", 3600);
-      instance.createApp({ body: input })
+      const name = 'my first app'; const interval = 3600;
+      instance.createApp(name, interval)
       .then(({ data, response }) => {
-        expect(data.name).to.be(input.name);
-        expect(data.interval).to.be(input.interval);
+        expect(data.name).to.be(name);
+        expect(data.interval).to.be(interval);
         expect(response.statusCode).to.be(201);
         done();
       })
@@ -46,8 +46,8 @@ describe('AppsApi', function() {
 
   describe('findApps', function() {
     it('should call findApps successfully', function(done) {
-      instance.createApp({ body: new TopazApi.AppInput("a", 30) })
-      .then(() => instance.createApp({ body: new TopazApi.AppInput("b", 30) }))
+      instance.createApp('a', 30)
+      .then(() => instance.createApp('b', 30))
       .then(() => instance.findApps())
       .then(({ data, response }) => {
         expect(data).to.have.length(2);
@@ -60,12 +60,10 @@ describe('AppsApi', function() {
 
   describe('getApp', function() {
     it('should call getApp successfully', function(done) {
-      const input = new TopazApi.AppInput("my other app", 3600);
-      instance.createApp({ body: input })
+      instance.createApp('other app', 3600)
       .then(({ data, _ }) => Promise.all([instance.getApp(data.id), data.id]))
       .then(([{ data, response }, appId]) => {
         expect(data.id).to.be(appId);
-        expect(data.name).to.be(input.name)
         expect(response.statusCode).to.be(200);
         done();
       })

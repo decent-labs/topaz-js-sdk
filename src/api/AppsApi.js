@@ -53,21 +53,14 @@ var exports = function(apiClient) {
    * @param {module:api/AppsApi~createAppCallback} callback The callback function, accepting three arguments: error, data, response
    * data is of type: {@link module:model/AppOutputDetailed}
    */
-  this.createApp = function(opts) {
-    opts = opts || {};
-    var postBody = opts['body'];
+  this.createApp = function(name, interval) {
+    var postBody = new AppInput(name, interval);
 
-
-    var pathParams = {
-    };
-    var queryParams = {
-    };
-    var collectionQueryParams = {
-    };
-    var headerParams = {
-    };
-    var formParams = {
-    };
+    var pathParams = {};
+    var queryParams = {};
+    var collectionQueryParams = {};
+    var headerParams = {};
+    var formParams = {};
 
     var authNames = ['API Key'];
     var contentTypes = ['application/json'];
