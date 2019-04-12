@@ -53,7 +53,7 @@ var exports = function(apiClient) {
    * @param {module:api/AppsApi~createAppCallback} callback The callback function, accepting three arguments: error, data, response
    * data is of type: {@link module:model/AppOutputDetailed}
    */
-  this.createApp = function(opts, callback) {
+  this.createApp = function(opts) {
     opts = opts || {};
     var postBody = opts['body'];
 
@@ -74,11 +74,16 @@ var exports = function(apiClient) {
     var accepts = ['application/json'];
     var returnType = AppOutputDetailed;
 
-    return this.apiClient.callApi(
-      '/apps', 'POST',
-      pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-      authNames, contentTypes, accepts, returnType, callback
-    );
+    return new Promise((resolve, reject) => {
+      this.apiClient.callApi(
+        '/apps', 'POST',
+        pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, (error, data, response) => {
+          if (error) reject(error)
+          else resolve({ data, response })
+        }
+      );
+    });
   }
 
   /**
@@ -95,7 +100,7 @@ var exports = function(apiClient) {
    * @param {module:api/AppsApi~findAppsCallback} callback The callback function, accepting three arguments: error, data, response
    * data is of type: {@link Array.<module:model/AppOutput>}
    */
-  this.findApps = function(callback) {
+  this.findApps = function() {
     var postBody = null;
 
 
@@ -115,11 +120,16 @@ var exports = function(apiClient) {
     var accepts = ['application/json'];
     var returnType = [AppOutput];
 
-    return this.apiClient.callApi(
-      '/apps', 'GET',
-      pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-      authNames, contentTypes, accepts, returnType, callback
-    );
+    return new Promise((resolve, reject) => {
+      this.apiClient.callApi(
+        '/apps', 'GET',
+        pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, (error, data, response) => {
+          if (error) reject(error)
+          else resolve({ data, response })
+        }
+      );
+    });
   }
 
   /**
@@ -137,7 +147,7 @@ var exports = function(apiClient) {
    * @param {module:api/AppsApi~getAppCallback} callback The callback function, accepting three arguments: error, data, response
    * data is of type: {@link module:model/AppOutputDetailed}
    */
-  this.getApp = function(appId, callback) {
+  this.getApp = function(appId) {
     var postBody = null;
 
     // verify the required parameter 'appId' is set
@@ -163,11 +173,16 @@ var exports = function(apiClient) {
     var accepts = ['application/json'];
     var returnType = AppOutputDetailed;
 
-    return this.apiClient.callApi(
-      '/apps/{appId}', 'GET',
-      pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-      authNames, contentTypes, accepts, returnType, callback
-    );
+    return new Promise((resolve, reject) => {
+      this.apiClient.callApi(
+        '/apps/{appId}', 'GET',
+        pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, (error, data, response) => {
+          if (error) reject(error)
+          else resolve({ data, response })
+        }
+      );
+    });
   }
 };
 
