@@ -17,24 +17,22 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD.
-    define(['expect.js', 'crypto', '../../src/index'], factory);
+    define(['expect.js', '../helpers/random', '../../src/index'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    factory(require('expect.js'), require('crypto'), require('../../src/index'));
+    factory(require('expect.js'), require('../helpers/random'), require('../../src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.uuidv4, root.TopazApi);
+    factory(root.expect, root.random, root.uuidv4, root.TopazApi);
   }
-}(this, function(expect, crypto, TopazApi) {
+}(this, function(expect, random, TopazApi) {
   'use strict';
 
   describe('HashCommon', function() {
     var instance, hash;
 
     beforeEach(function() {
-      hash = crypto.createHmac('sha256', '')
-        .update(Math.random().toString(36).substr(2, 5))
-        .digest('hex');
+      hash = random.sha256HexHash();
       instance = new TopazApi.HashCommon(hash);
     });
 

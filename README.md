@@ -99,10 +99,10 @@ var TopazApi = require('topaz_api');
 var defaultClient = TopazApi.ApiClient.instance;
 
 // Configure API key authorization: API Key
-var API Key = defaultClient.authentications['API Key'];
-API Key.apiKey = "YOUR API KEY"
+var APIKey = defaultClient.authentications['API Key'];
+APIKey.apiKey = "YOUR API KEY"
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//API Key.apiKeyPrefix['Authorization'] = "Token"
+//APIKey.apiKeyPrefix['Authorization'] = "Token"
 
 var api = new TopazApi.AppsApi()
 
