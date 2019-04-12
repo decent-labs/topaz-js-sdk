@@ -14,39 +14,30 @@
  *
  */
 
-(function(root, factory) {
-  if (typeof define === 'function' && define.amd) {
-    // AMD.
-    define(['expect.js', 'uuid/v4', '../../src/index'], factory);
-  } else if (typeof module === 'object' && module.exports) {
-    // CommonJS-like environments that support module.exports, like Node.
-    factory(require('expect.js'), require('uuid/v4'), require('../../src/index'));
-  } else {
-    // Browser globals (root is window)
-    factory(root.expect, root.uuidv4, root.TopazApi);
-  }
-}(this, function(expect, uuidv4, TopazApi) {
-  'use strict';
+'use strict';
 
-  describe('AppOutput', function() {
-    var instance, appId, userId;
+const expect = require('expect.js');
+const uuidv4 = require('uuid/v4');
+const TopazApi = require('../../src/index');
 
-    beforeEach(function() {
-      appId = uuidv4();
-      userId = uuidv4();
-      instance = new TopazApi.AppOutput("test app", 30, appId, userId)
-    });
+describe('AppOutput', function() {
+  var instance, appId, userId;
 
-    it('should create an instance of AppOutput', function() {
-      expect(instance).to.be.a(TopazApi.AppOutput);
-    });
-
-    it('should have the property id (base name: "id")', function() {
-      expect(instance.id).to.be(appId);
-    });
-
-    it('should have the property userId (base name: "userId")', function() {
-      expect(instance.userId).to.be(userId);
-    });
+  beforeEach(function() {
+    appId = uuidv4();
+    userId = uuidv4();
+    instance = new TopazApi.AppOutput("test app", 30, appId, userId)
   });
-}));
+
+  it('should create an instance of AppOutput', function() {
+    expect(instance).to.be.a(TopazApi.AppOutput);
+  });
+
+  it('should have the property id (base name: "id")', function() {
+    expect(instance.id).to.be(appId);
+  });
+
+  it('should have the property userId (base name: "userId")', function() {
+    expect(instance.userId).to.be(userId);
+  });
+});
