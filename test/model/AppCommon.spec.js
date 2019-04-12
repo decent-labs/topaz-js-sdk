@@ -14,37 +14,27 @@
  *
  */
 
-(function(root, factory) {
-  if (typeof define === 'function' && define.amd) {
-    // AMD.
-    define(['expect.js', '../../src/index'], factory);
-  } else if (typeof module === 'object' && module.exports) {
-    // CommonJS-like environments that support module.exports, like Node.
-    factory(require('expect.js'), require('../../src/index'));
-  } else {
-    // Browser globals (root is window)
-    factory(root.expect, root.TopazApi);
-  }
-}(this, function(expect, TopazApi) {
-  'use strict';
+'use strict';
 
-  describe('AppCommon', function() {
-    var instance;
+const expect = require('expect.js');
+const TopazApi = require('../../src/index');
 
-    beforeEach(function() {
-      instance = new TopazApi.AppCommon("test app", 30);
-    });
+describe('AppCommon', function() {
+  var instance;
 
-    it('should create an instance of AppCommon', function() {
-      expect(instance).to.be.a(TopazApi.AppCommon);
-    });
-
-    it('should have the property name (base name: "name")', function() {
-      expect(instance.name).to.be("test app");
-    });
-
-    it('should have the property interval (base name: "interval")', function() {
-      expect(instance.interval).to.be(30);
-    });
+  beforeEach(function() {
+    instance = new TopazApi.AppCommon("test app", 30);
   });
-}));
+
+  it('should create an instance of AppCommon', function() {
+    expect(instance).to.be.a(TopazApi.AppCommon);
+  });
+
+  it('should have the property name (base name: "name")', function() {
+    expect(instance.name).to.be("test app");
+  });
+
+  it('should have the property interval (base name: "interval")', function() {
+    expect(instance.interval).to.be(30);
+  });
+});

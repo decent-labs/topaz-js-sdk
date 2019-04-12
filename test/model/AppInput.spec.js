@@ -14,29 +14,19 @@
  *
  */
 
-(function(root, factory) {
-  if (typeof define === 'function' && define.amd) {
-    // AMD.
-    define(['expect.js', '../../src/index'], factory);
-  } else if (typeof module === 'object' && module.exports) {
-    // CommonJS-like environments that support module.exports, like Node.
-    factory(require('expect.js'), require('../../src/index'));
-  } else {
-    // Browser globals (root is window)
-    factory(root.expect, root.TopazApi);
-  }
-}(this, function(expect, TopazApi) {
-  'use strict';
+'use strict';
 
-  describe('AppInput', function() {
-    var instance;
+const expect = require('expect.js');
+const TopazApi = require('../../src/index');
 
-    beforeEach(function() {
-      instance = new TopazApi.AppInput();
-    });
+describe('AppInput', function() {
+  var instance;
 
-    it('should create an instance of AppInput', function() {
-      expect(instance).to.be.a(TopazApi.AppInput);
-    });
+  beforeEach(function() {
+    instance = new TopazApi.AppInput();
   });
-}));
+
+  it('should create an instance of AppInput', function() {
+    expect(instance).to.be.a(TopazApi.AppInput);
+  });
+});
