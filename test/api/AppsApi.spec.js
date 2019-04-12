@@ -33,41 +33,43 @@ describe('AppsApi', function() {
   describe('createApp', function() {
     it('should call createApp successfully', function(done) {
       const input = new TopazApi.AppInput("my first app", 3600);
-      instance.createApp({ body: input }, function(_, data, response) {
+      instance.createApp({ body: input })
+      .then(({ data, response }) => {
         expect(data.name).to.be(input.name);
         expect(data.interval).to.be(input.interval);
         expect(response.statusCode).to.be(201);
         done();
-      });
+      })
+      .catch(err => console.error(err));
     });
   });
 
   describe('findApps', function() {
     it('should call findApps successfully', function(done) {
-      instance.createApp({ body: new TopazApi.AppInput("my first app", 3600) }, function() {
-        instance.createApp({ body: new TopazApi.AppInput("my second app", 3600) }, function() {
-          instance.findApps(function(_, data, response) {
-            expect(data).to.have.length(2);
-            expect(response.statusCode).to.be(200);
-            done();
-          });
-        });
-      });
+      instance.createApp({ body: new TopazApi.AppInput("a", 30) })
+      .then(() => instance.createApp({ body: new TopazApi.AppInput("b", 30) }))
+      .then(() => instance.findApps())
+      .then(({ data, response }) => {
+        expect(data).to.have.length(2);
+        expect(response.statusCode).to.be(200);
+        done();
+      })
+      .catch(err => console.error(err));
     });
   });
 
   describe('getApp', function() {
     it('should call getApp successfully', function(done) {
       const input = new TopazApi.AppInput("my other app", 3600);
-      instance.createApp({ body: input }, function(_, data, __) {
-        const appId = data.id;
-        instance.getApp(appId, function(_, data, response) {
-          expect(data.id).to.be(appId);
-          expect(data.name).to.be(input.name)
-          expect(response.statusCode).to.be(200);
-          done();
-        });
-      });
+      instance.createApp({ body: input })
+      .then(({ data, _ }) => Promise.all([instance.getApp(data.id), data.id]))
+      .then(([{ data, response }, appId]) => {
+        expect(data.id).to.be(appId);
+        expect(data.name).to.be(input.name)
+        expect(response.statusCode).to.be(200);
+        done();
+      })
+      .catch(err => console.error(err));
     });
   });
 });
