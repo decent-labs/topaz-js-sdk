@@ -17,70 +17,65 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD.
-    define(['expect.js', '../../src/index'], factory);
+    define(['expect.js', '../helpers/setup', '../../src/index'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    factory(require('expect.js'), require('../../src/index'));
+    factory(require('expect.js'), require('../helpers/setup'), require('../../src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.TopazApi);
+    factory(root.expect, root.setup, root.TopazApi);
   }
-}(this, function(expect, TopazApi) {
+}(this, function(expect, setup, TopazApi) {
   'use strict';
 
-  var instance;
+  describe.only('AppsApi', function() {
+    let instance;
 
-  beforeEach(function() {
-    instance = new TopazApi.AppsApi();
-  });
+    beforeEach('get a fresh api instance', function() {
+      return setup.freshInstance()
+        .then(instance = new TopazApi.AppsApi())
+        .catch(err => console.error(err));
+    });
 
-  var getProperty = function(object, getter, property) {
-    // Use getter method if present; otherwise, get the property directly.
-    if (typeof object[getter] === 'function')
-      return object[getter]();
-    else
-      return object[property];
-  }
-
-  var setProperty = function(object, setter, property, value) {
-    // Use setter method if present; otherwise, set the property directly.
-    if (typeof object[setter] === 'function')
-      object[setter](value);
-    else
-      object[property] = value;
-  }
-
-  describe('AppsApi', function() {
     describe('createApp', function() {
       it('should call createApp successfully', function(done) {
-        //uncomment below and update the code to test createApp
-        //instance.createApp(function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
-        done();
+        const input = new TopazApi.AppInput("my first app", 3600);
+        instance.createApp({ body: input }, function(_, data, response) {
+          expect(data.name).to.be(input.name);
+          expect(data.interval).to.be(input.interval);
+          expect(response.statusCode).to.be(201);
+          done();
+        });
       });
     });
+
     describe('findApps', function() {
       it('should call findApps successfully', function(done) {
-        //uncomment below and update the code to test findApps
-        //instance.findApps(function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
-        done();
+        instance.createApp({ body: new TopazApi.AppInput("my first app", 3600) }, function() {
+          instance.createApp({ body: new TopazApi.AppInput("my second app", 3600) }, function() {
+            instance.findApps(function(_, data, response) {
+              expect(data).to.have.length(2);
+              expect(response.statusCode).to.be(200);
+              done();
+            });
+          });
+        });
       });
     });
+
     describe('getApp', function() {
       it('should call getApp successfully', function(done) {
-        //uncomment below and update the code to test getApp
-        //instance.getApp(function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
-        done();
+        const input = new TopazApi.AppInput("my other app", 3600);
+        instance.createApp({ body: input }, function(_, data, __) {
+          const appId = data.id;
+          instance.getApp(appId, function(_, data, response) {
+            expect(data.id).to.be(appId);
+            expect(data.name).to.be(input.name)
+            expect(response.statusCode).to.be(200);
+            done();
+          });
+        });
       });
     });
   });
-
 }));
