@@ -14,165 +14,179 @@
  *
  */
 
-(function(factory) {
-  if (typeof define === 'function' && define.amd) {
-    // AMD. Register as an anonymous module.
-    define(['ApiClient', 'model/AppCommon', 'model/HashCommon', 'model/HashStubOutput', 'model/HashstuboutputHashes', 'model/ObjectCommon', 'model/ProofCommon', 'model/AppInput', 'model/AppOutput', 'model/HashInput', 'model/HashOutput', 'model/ObjectInput', 'model/ObjectOutput', 'model/ProofInput', 'model/ProofOutput', 'model/AppOutputDetailed', 'model/HashOutputDetailed', 'model/ObjectOutputDetailed', 'model/ProofOutputDetailed', 'api/AppsApi', 'api/HashesApi', 'api/ObjectsApi', 'api/ProofsApi'], factory);
-  } else if (typeof module === 'object' && module.exports) {
-    // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('./ApiClient'), require('./model/AppCommon'), require('./model/HashCommon'), require('./model/HashStubOutput'), require('./model/HashstuboutputHashes'), require('./model/ObjectCommon'), require('./model/ProofCommon'), require('./model/AppInput'), require('./model/AppOutput'), require('./model/HashInput'), require('./model/HashOutput'), require('./model/ObjectInput'), require('./model/ObjectOutput'), require('./model/ProofInput'), require('./model/ProofOutput'), require('./model/AppOutputDetailed'), require('./model/HashOutputDetailed'), require('./model/ObjectOutputDetailed'), require('./model/ProofOutputDetailed'), require('./api/AppsApi'), require('./api/HashesApi'), require('./api/ObjectsApi'), require('./api/ProofsApi'));
-  }
-}(function(ApiClient, AppCommon, HashCommon, HashStubOutput, HashstuboutputHashes, ObjectCommon, ProofCommon, AppInput, AppOutput, HashInput, HashOutput, ObjectInput, ObjectOutput, ProofInput, ProofOutput, AppOutputDetailed, HashOutputDetailed, ObjectOutputDetailed, ProofOutputDetailed, AppsApi, HashesApi, ObjectsApi, ProofsApi) {
-  'use strict';
+'use strict';
 
+const ApiClient = require('./ApiClient');
+const AppCommon = require('./model/AppCommon');
+const HashCommon = require('./model/HashCommon');
+const HashStubOutput = require('./model/HashStubOutput');
+const HashstuboutputHashes = require('./model/HashstuboutputHashes');
+const ObjectCommon = require('./model/ObjectCommon');
+const ProofCommon = require('./model/ProofCommon');
+const AppInput = require('./model/AppInput');
+const AppOutput = require('./model/AppOutput');
+const HashInput = require('./model/HashInput');
+const HashOutput = require('./model/HashOutput');
+const ObjectInput = require('./model/ObjectInput');
+const ObjectOutput = require('./model/ObjectOutput');
+const ProofInput = require('./model/ProofInput');
+const ProofOutput = require('./model/ProofOutput');
+const AppOutputDetailed = require('./model/AppOutputDetailed');
+const HashOutputDetailed = require('./model/HashOutputDetailed');
+const ObjectOutputDetailed = require('./model/ObjectOutputDetailed');
+const ProofOutputDetailed = require('./model/ProofOutputDetailed');
+const AppsApi = require('./api/AppsApi');
+const HashesApi = require('./api/HashesApi');
+const ObjectsApi = require('./api/ObjectsApi');
+const ProofsApi = require('./api/ProofsApi');
+
+/**
+ * _Topaz_API_SpecTo_get_up_and_running_with_Topaz_API_as_quickly_as_possible_read_through_these_docs__PrerequisitesCreate_an_account_at__httpstopaz_io_httpstopaz_io_log_in_and_generate_an_API_Token_Youll_need_an_API_Token_to_create_a_new_app_create_objects_create_hashes_and_view_proofs_All_API_requests_should_be_prefixed_with_v1_indicating_that_youre_targeting_version_1_of_our_API__GuaranteeTopaz_API_follows_Semantic_Versioning__httpssemver_org_so_expect_that_any_breaking_changes_will_be_versioned_under_a_new_route_prefix_.<br>
+ * The <code>index</code> module provides access to constructors for all the classes which comprise the public API.
+ * <p>
+ * An AMD (recommended!) or CommonJS application will generally do something equivalent to the following:
+ * <pre>
+ * var TopazApi = require('index'); // See note below*.
+ * var xxxSvc = new TopazApi.XxxApi(); // Allocate the API class we're going to use.
+ * var yyyModel = new TopazApi.Yyy(); // Construct a model instance.
+ * yyyModel.someProperty = 'someValue';
+ * ...
+ * var zzz = xxxSvc.doSomething(yyyModel); // Invoke the service.
+ * ...
+ * </pre>
+ * <em>*NOTE: For a top-level AMD script, use require(['index'], function(){...})
+ * and put the application logic within the callback function.</em>
+ * </p>
+ * <p>
+ * A non-AMD browser application (discouraged) might do something like this:
+ * <pre>
+ * var xxxSvc = new TopazApi.XxxApi(); // Allocate the API class we're going to use.
+ * var yyy = new TopazApi.Yyy(); // Construct a model instance.
+ * yyyModel.someProperty = 'someValue';
+ * ...
+ * var zzz = xxxSvc.doSomething(yyyModel); // Invoke the service.
+ * ...
+ * </pre>
+ * </p>
+ * @module index
+ * @version 0.1.17
+ */
+var exports = {
   /**
-   * _Topaz_API_SpecTo_get_up_and_running_with_Topaz_API_as_quickly_as_possible_read_through_these_docs__PrerequisitesCreate_an_account_at__httpstopaz_io_httpstopaz_io_log_in_and_generate_an_API_Token_Youll_need_an_API_Token_to_create_a_new_app_create_objects_create_hashes_and_view_proofs_All_API_requests_should_be_prefixed_with_v1_indicating_that_youre_targeting_version_1_of_our_API__GuaranteeTopaz_API_follows_Semantic_Versioning__httpssemver_org_so_expect_that_any_breaking_changes_will_be_versioned_under_a_new_route_prefix_.<br>
-   * The <code>index</code> module provides access to constructors for all the classes which comprise the public API.
-   * <p>
-   * An AMD (recommended!) or CommonJS application will generally do something equivalent to the following:
-   * <pre>
-   * var TopazApi = require('index'); // See note below*.
-   * var xxxSvc = new TopazApi.XxxApi(); // Allocate the API class we're going to use.
-   * var yyyModel = new TopazApi.Yyy(); // Construct a model instance.
-   * yyyModel.someProperty = 'someValue';
-   * ...
-   * var zzz = xxxSvc.doSomething(yyyModel); // Invoke the service.
-   * ...
-   * </pre>
-   * <em>*NOTE: For a top-level AMD script, use require(['index'], function(){...})
-   * and put the application logic within the callback function.</em>
-   * </p>
-   * <p>
-   * A non-AMD browser application (discouraged) might do something like this:
-   * <pre>
-   * var xxxSvc = new TopazApi.XxxApi(); // Allocate the API class we're going to use.
-   * var yyy = new TopazApi.Yyy(); // Construct a model instance.
-   * yyyModel.someProperty = 'someValue';
-   * ...
-   * var zzz = xxxSvc.doSomething(yyyModel); // Invoke the service.
-   * ...
-   * </pre>
-   * </p>
-   * @module index
-   * @version 0.1.17
+   * The ApiClient constructor.
+   * @property {module:ApiClient}
    */
-  var exports = {
-    /**
-     * The ApiClient constructor.
-     * @property {module:ApiClient}
-     */
-    ApiClient: ApiClient,
-    /**
-     * The AppCommon model constructor.
-     * @property {module:model/AppCommon}
-     */
-    AppCommon: AppCommon,
-    /**
-     * The HashCommon model constructor.
-     * @property {module:model/HashCommon}
-     */
-    HashCommon: HashCommon,
-    /**
-     * The HashStubOutput model constructor.
-     * @property {module:model/HashStubOutput}
-     */
-    HashStubOutput: HashStubOutput,
-    /**
-     * The HashstuboutputHashes model constructor.
-     * @property {module:model/HashstuboutputHashes}
-     */
-    HashstuboutputHashes: HashstuboutputHashes,
-    /**
-     * The ObjectCommon model constructor.
-     * @property {module:model/ObjectCommon}
-     */
-    ObjectCommon: ObjectCommon,
-    /**
-     * The ProofCommon model constructor.
-     * @property {module:model/ProofCommon}
-     */
-    ProofCommon: ProofCommon,
-    /**
-     * The AppInput model constructor.
-     * @property {module:model/AppInput}
-     */
-    AppInput: AppInput,
-    /**
-     * The AppOutput model constructor.
-     * @property {module:model/AppOutput}
-     */
-    AppOutput: AppOutput,
-    /**
-     * The HashInput model constructor.
-     * @property {module:model/HashInput}
-     */
-    HashInput: HashInput,
-    /**
-     * The HashOutput model constructor.
-     * @property {module:model/HashOutput}
-     */
-    HashOutput: HashOutput,
-    /**
-     * The ObjectInput model constructor.
-     * @property {module:model/ObjectInput}
-     */
-    ObjectInput: ObjectInput,
-    /**
-     * The ObjectOutput model constructor.
-     * @property {module:model/ObjectOutput}
-     */
-    ObjectOutput: ObjectOutput,
-    /**
-     * The ProofInput model constructor.
-     * @property {module:model/ProofInput}
-     */
-    ProofInput: ProofInput,
-    /**
-     * The ProofOutput model constructor.
-     * @property {module:model/ProofOutput}
-     */
-    ProofOutput: ProofOutput,
-    /**
-     * The AppOutputDetailed model constructor.
-     * @property {module:model/AppOutputDetailed}
-     */
-    AppOutputDetailed: AppOutputDetailed,
-    /**
-     * The HashOutputDetailed model constructor.
-     * @property {module:model/HashOutputDetailed}
-     */
-    HashOutputDetailed: HashOutputDetailed,
-    /**
-     * The ObjectOutputDetailed model constructor.
-     * @property {module:model/ObjectOutputDetailed}
-     */
-    ObjectOutputDetailed: ObjectOutputDetailed,
-    /**
-     * The ProofOutputDetailed model constructor.
-     * @property {module:model/ProofOutputDetailed}
-     */
-    ProofOutputDetailed: ProofOutputDetailed,
-    /**
-     * The AppsApi service constructor.
-     * @property {module:api/AppsApi}
-     */
-    AppsApi: AppsApi,
-    /**
-     * The HashesApi service constructor.
-     * @property {module:api/HashesApi}
-     */
-    HashesApi: HashesApi,
-    /**
-     * The ObjectsApi service constructor.
-     * @property {module:api/ObjectsApi}
-     */
-    ObjectsApi: ObjectsApi,
-    /**
-     * The ProofsApi service constructor.
-     * @property {module:api/ProofsApi}
-     */
-    ProofsApi: ProofsApi
-  };
+  ApiClient: ApiClient,
+  /**
+   * The AppCommon model constructor.
+   * @property {module:model/AppCommon}
+   */
+  AppCommon: AppCommon,
+  /**
+   * The HashCommon model constructor.
+   * @property {module:model/HashCommon}
+   */
+  HashCommon: HashCommon,
+  /**
+   * The HashStubOutput model constructor.
+   * @property {module:model/HashStubOutput}
+   */
+  HashStubOutput: HashStubOutput,
+  /**
+   * The HashstuboutputHashes model constructor.
+   * @property {module:model/HashstuboutputHashes}
+   */
+  HashstuboutputHashes: HashstuboutputHashes,
+  /**
+   * The ObjectCommon model constructor.
+   * @property {module:model/ObjectCommon}
+   */
+  ObjectCommon: ObjectCommon,
+  /**
+   * The ProofCommon model constructor.
+   * @property {module:model/ProofCommon}
+   */
+  ProofCommon: ProofCommon,
+  /**
+   * The AppInput model constructor.
+   * @property {module:model/AppInput}
+   */
+  AppInput: AppInput,
+  /**
+   * The AppOutput model constructor.
+   * @property {module:model/AppOutput}
+   */
+  AppOutput: AppOutput,
+  /**
+   * The HashInput model constructor.
+   * @property {module:model/HashInput}
+   */
+  HashInput: HashInput,
+  /**
+   * The HashOutput model constructor.
+   * @property {module:model/HashOutput}
+   */
+  HashOutput: HashOutput,
+  /**
+   * The ObjectInput model constructor.
+   * @property {module:model/ObjectInput}
+   */
+  ObjectInput: ObjectInput,
+  /**
+   * The ObjectOutput model constructor.
+   * @property {module:model/ObjectOutput}
+   */
+  ObjectOutput: ObjectOutput,
+  /**
+   * The ProofInput model constructor.
+   * @property {module:model/ProofInput}
+   */
+  ProofInput: ProofInput,
+  /**
+   * The ProofOutput model constructor.
+   * @property {module:model/ProofOutput}
+   */
+  ProofOutput: ProofOutput,
+  /**
+   * The AppOutputDetailed model constructor.
+   * @property {module:model/AppOutputDetailed}
+   */
+  AppOutputDetailed: AppOutputDetailed,
+  /**
+   * The HashOutputDetailed model constructor.
+   * @property {module:model/HashOutputDetailed}
+   */
+  HashOutputDetailed: HashOutputDetailed,
+  /**
+   * The ObjectOutputDetailed model constructor.
+   * @property {module:model/ObjectOutputDetailed}
+   */
+  ObjectOutputDetailed: ObjectOutputDetailed,
+  /**
+   * The ProofOutputDetailed model constructor.
+   * @property {module:model/ProofOutputDetailed}
+   */
+  ProofOutputDetailed: ProofOutputDetailed,
+  /**
+   * The AppsApi service constructor.
+   * @property {module:api/AppsApi}
+   */
+  AppsApi: AppsApi,
+  /**
+   * The HashesApi service constructor.
+   * @property {module:api/HashesApi}
+   */
+  HashesApi: HashesApi,
+  /**
+   * The ObjectsApi service constructor.
+   * @property {module:api/ObjectsApi}
+   */
+  ObjectsApi: ObjectsApi,
+  /**
+   * The ProofsApi service constructor.
+   * @property {module:api/ProofsApi}
+   */
+  ProofsApi: ProofsApi
+};
 
-  return exports;
-}));
+module.exports = exports;
