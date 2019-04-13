@@ -53,7 +53,7 @@ var exports = function(apiClient) {
    * @param {module:api/AppsApi~createAppCallback} callback The callback function, accepting three arguments: error, data, response
    * data is of type: {@link module:model/AppOutputDetailed}
    */
-  this.createApp = function({ name, interval }) {
+  this.createApp = function({ name, interval }, callback) {
     var postBody = new AppInput(name, interval);
 
     var pathParams = {};
@@ -67,16 +67,11 @@ var exports = function(apiClient) {
     var accepts = ['application/json'];
     var returnType = AppOutputDetailed;
 
-    return new Promise((resolve, reject) => {
-      this.apiClient.callApi(
-        '/apps', 'POST',
-        pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, (error, data, response) => {
-          if (error) reject(error)
-          else resolve({ data, response })
-        }
-      );
-    });
+    return this.apiClient.callApi(
+      '/apps', 'POST',
+      pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
+      authNames, contentTypes, accepts, returnType, callback
+    );
   }
 
   /**
@@ -93,36 +88,25 @@ var exports = function(apiClient) {
    * @param {module:api/AppsApi~findAppsCallback} callback The callback function, accepting three arguments: error, data, response
    * data is of type: {@link Array.<module:model/AppOutput>}
    */
-  this.findApps = function() {
+  this.findApps = function(callback) {
     var postBody = null;
 
-
-    var pathParams = {
-    };
-    var queryParams = {
-    };
-    var collectionQueryParams = {
-    };
-    var headerParams = {
-    };
-    var formParams = {
-    };
+    var pathParams = {};
+    var queryParams = {};
+    var collectionQueryParams = {};
+    var headerParams = {};
+    var formParams = {};
 
     var authNames = ['API Key'];
     var contentTypes = [];
     var accepts = ['application/json'];
     var returnType = [AppOutput];
 
-    return new Promise((resolve, reject) => {
-      this.apiClient.callApi(
-        '/apps', 'GET',
-        pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, (error, data, response) => {
-          if (error) reject(error)
-          else resolve({ data, response })
-        }
-      );
-    });
+    return this.apiClient.callApi(
+      '/apps', 'GET',
+      pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
+      authNames, contentTypes, accepts, returnType, callback
+    );
   }
 
   /**
@@ -140,7 +124,7 @@ var exports = function(apiClient) {
    * @param {module:api/AppsApi~getAppCallback} callback The callback function, accepting three arguments: error, data, response
    * data is of type: {@link module:model/AppOutputDetailed}
    */
-  this.getApp = function(appId) {
+  this.getApp = function(appId, callback) {
     var postBody = null;
 
     // verify the required parameter 'appId' is set
@@ -148,34 +132,24 @@ var exports = function(apiClient) {
       throw new Error("Missing the required parameter 'appId' when calling getApp");
     }
 
-
     var pathParams = {
       'appId': appId
     };
-    var queryParams = {
-    };
-    var collectionQueryParams = {
-    };
-    var headerParams = {
-    };
-    var formParams = {
-    };
+    var queryParams = {};
+    var collectionQueryParams = {};
+    var headerParams = {};
+    var formParams = {};
 
     var authNames = ['API Key'];
     var contentTypes = [];
     var accepts = ['application/json'];
     var returnType = AppOutputDetailed;
 
-    return new Promise((resolve, reject) => {
-      this.apiClient.callApi(
-        '/apps/{appId}', 'GET',
-        pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, (error, data, response) => {
-          if (error) reject(error)
-          else resolve({ data, response })
-        }
-      );
-    });
+    return this.apiClient.callApi(
+      '/apps/{appId}', 'GET',
+      pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
+      authNames, contentTypes, accepts, returnType, callback
+    );
   }
 };
 

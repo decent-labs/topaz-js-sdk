@@ -462,25 +462,45 @@ exports.prototype.callApi = function callApi(path, httpMethod, pathParams,
     }
   }
 
-
-  request.end(function(error, response) {
-    if (callback) {
-      var data = null;
-      if (!error) {
-        try {
-          data = _this.deserialize(response, returnType);
-          if (_this.enableCookies && typeof window === 'undefined'){
-            _this.agent.saveCookies(response);
-          }
-        } catch (err) {
-          error = err;
-        }
-      }
-      callback(error, data, response);
+  const deserialize = (response) => {
+    const data = _this.deserialize(response, returnType);
+    if (_this.enableCookies && typeof window === 'undefined'){
+      _this.agent.saveCookies(response);
     }
-  });
+    return data;
+  }
 
-  return request;
+  if (callback === undefined) {
+    return new Promise((resolve, reject) => {
+      request.end(function(error, response) {
+        if (!error) {
+          try {
+            const data = deserialize(response);
+            resolve({ data, response });
+          } catch (err) {
+            reject(err);
+          }
+        } else {
+          reject(error);
+        }
+      });
+    });
+  } else {
+    request.end(function(error, response) {
+      if (callback) {
+        let data = null;
+        if (!error) {
+          try {
+            data = deserialize(response);
+          } catch (err) {
+            error = err;
+          }
+        }
+        callback(error, data, response);
+      }
+    });
+    return request;
+  }
 };
 
 /**
