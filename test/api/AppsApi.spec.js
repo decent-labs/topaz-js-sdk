@@ -6,10 +6,10 @@ const TopazApi = require('../../src/index');
 const setup = require('../helpers/setup');
 
 describe('AppsApi', function() {
-  let instance;
+  let appsApi;
 
   beforeEach('get a fresh api instance', function() {
-    return setup.freshInstance().then(instance = new TopazApi.AppsApi())
+    return setup.freshInstance().then(api => appsApi = new TopazApi.AppsApi(api));
   });
 
   describe('createApp', function() {
@@ -23,13 +23,13 @@ describe('AppsApi', function() {
     };
 
     it('should call createApp successfully using promises', function(done) {  
-      instance.createApp(params).then(({ data, response }) => {
+      appsApi.createApp(params).then(({ data, response }) => {
         expects(params, data, response, done);
       });
     });
 
     it('should call createApp successfully using callbacks', function(done) {
-      instance.createApp(params, (_, data, response) => {
+      appsApi.createApp(params, (_, data, response) => {
         expects(params, data, response, done);
       });
     });
@@ -43,18 +43,18 @@ describe('AppsApi', function() {
     };
 
     it('should call findApps successfully using promises', function(done) {
-      instance.createApp({ name: 'a', interval: 30 })
-      .then(() => instance.createApp({ name: 'b', interval: 30 }))
-      .then(() => instance.findApps())
+      appsApi.createApp({ name: 'a', interval: 30 })
+      .then(() => appsApi.createApp({ name: 'b', interval: 30 }))
+      .then(() => appsApi.findApps())
       .then(({ data, response }) => {
         expects(data, response, done)
       });
     });
 
     it('should call findApps successfully using callbacks', function(done) {
-      instance.createApp({ name: 'a', interval: 30 }, () => {
-        instance.createApp({ name: 'b', interval: 30 }, () => {
-          instance.findApps((_, data, response) => {
+      appsApi.createApp({ name: 'a', interval: 30 }, () => {
+        appsApi.createApp({ name: 'b', interval: 30 }, () => {
+          appsApi.findApps((_, data, response) => {
             expects(data, response, done)
           });
         });
@@ -70,16 +70,16 @@ describe('AppsApi', function() {
     };
 
     it('should call getApp successfully using promises', function(done) {
-      instance.createApp({ name: 'other app', interval: 3600 })
-      .then(({ data, _ }) => Promise.all([instance.getApp(data.id), data.id]))
+      appsApi.createApp({ name: 'other app', interval: 3600 })
+      .then(({ data, _ }) => Promise.all([appsApi.getApp(data.id), data.id]))
       .then(([{ data, response }, appId]) => {
         expects(appId, data, response, done)
       });
     });
 
     it('should call getApp successfully using callbacks', function(done) {
-      instance.createApp({ name: 'other app', interval: 3600 }, (_, createData, __) => {
-        instance.getApp(createData.id, (_, getData, getResponse) => {
+      appsApi.createApp({ name: 'other app', interval: 3600 }, (_, createData, __) => {
+        appsApi.getApp(createData.id, (_, getData, getResponse) => {
           expects(createData.id, getData, getResponse, done);
         });
       });
