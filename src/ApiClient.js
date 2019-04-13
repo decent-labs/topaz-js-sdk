@@ -31,13 +31,14 @@ const querystring = require('querystring');
  * @alias module:ApiClient
  * @class
  */
-var exports = function() {
+var exports = function(opts) {
   /**
    * The base URL against which to resolve every API call's (relative) path.
    * @type {String}
    * @default https://sandbox.topaz.io/v1
    */
   this.basePath = 'https://sandbox.topaz.io/v1'.replace(/\/+$/, '');
+  if (opts.basePath) this.basePath = opts.basePath
 
   /**
    * The authentication methods to be included for all API calls.
@@ -46,6 +47,8 @@ var exports = function() {
   this.authentications = {
     'API Key': {type: 'apiKey', 'in': 'header', name: 'Authorization'}
   };
+  if (opts.apiKey) this.authentications['API Key'].apiKey = opts.apiKey
+
   /**
    * The default HTTP headers to be included for all API calls.
    * @type {Array.<String>}
