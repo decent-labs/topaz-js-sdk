@@ -19,11 +19,10 @@ const apiKey = () => {
 }
 
 const freshInstance = () => {
-  const client = TopazApi.ApiClient.instance;
-  client.basePath = process.env.BASE_PATH;
-  const apiKeyObj = client.authentications['API Key'];
-  apiKeyObj.apiKeyPrefix = "Bearer";
-  return apiKey().then(apiKey => apiKeyObj.apiKey = apiKey);
+  return apiKey().then(apiKey => {
+    const opts = { basePath: process.env.BASE_PATH, apiKey };
+    return new TopazApi.ApiClient(opts)
+  });
 }
 
 module.exports = { freshInstance }
