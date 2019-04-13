@@ -596,10 +596,4 @@ exports.constructFromObject = function(data, obj, itemType) {
   }
 };
 
-/**
- * The default API client implementation.
- * @type {module:ApiClient}
- */
-exports.instance = new exports();
-
 module.exports = exports;
