@@ -9,7 +9,7 @@ describe('AppsApi', function() {
   let instance;
 
   beforeEach('get a fresh api instance', function() {
-    return setup.freshInstance().then(instance = new TopazApi.AppsApi())
+    return setup.freshInstance().then(api => appsApi = new TopazApi.AppsApi(api))
   });
 
   describe('createApp', function() {
