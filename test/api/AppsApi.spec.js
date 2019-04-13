@@ -33,7 +33,7 @@ describe('AppsApi', function() {
   describe('createApp', function() {
     it('should call createApp successfully', function(done) {
       const name = 'my first app'; const interval = 3600;
-      instance.createApp(name, interval)
+      instance.createApp({ name, interval })
       .then(({ data, response }) => {
         expect(data.name).to.be(name);
         expect(data.interval).to.be(interval);
@@ -46,8 +46,8 @@ describe('AppsApi', function() {
 
   describe('findApps', function() {
     it('should call findApps successfully', function(done) {
-      instance.createApp('a', 30)
-      .then(() => instance.createApp('b', 30))
+      instance.createApp({ name: 'a', interval: 30 })
+      .then(() => instance.createApp({ name: 'b', interval: 30 }))
       .then(() => instance.findApps())
       .then(({ data, response }) => {
         expect(data).to.have.length(2);
@@ -60,7 +60,7 @@ describe('AppsApi', function() {
 
   describe('getApp', function() {
     it('should call getApp successfully', function(done) {
-      instance.createApp('other app', 3600)
+      instance.createApp({ name: 'other app', interval: 3600 })
       .then(({ data, _ }) => Promise.all([instance.getApp(data.id), data.id]))
       .then(([{ data, response }, appId]) => {
         expect(data.id).to.be(appId);
