@@ -13,9 +13,6 @@
  * Do not edit the class manually.
  *
  */
-
-'use strict';
-
 const superagent = require('superagent');
 const querystring = require('querystring');
 

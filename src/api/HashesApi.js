@@ -1,5 +1,3 @@
-'use strict';
-
 const HashInput = require('../model/HashInput');
 const HashOutput = require('../model/HashOutput');
 const HashOutputDetailed = require('../model/HashOutputDetailed');

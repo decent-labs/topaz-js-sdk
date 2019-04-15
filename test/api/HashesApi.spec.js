@@ -1,5 +1,3 @@
-'use strict';
-
 const expect = require('expect.js');
 const random = require('../helpers/random');
 const setup = require('../helpers/setup');

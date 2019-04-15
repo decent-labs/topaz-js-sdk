@@ -1,5 +1,3 @@
-'use strict';
-
 const AppInput = require('../model/AppInput');
 const AppOutput = require('../model/AppOutput');
 const AppOutputDetailed = require('../model/AppOutputDetailed');

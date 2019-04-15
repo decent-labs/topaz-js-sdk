@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * The ObjectCommon model module.
  * @module model/ObjectCommon

@@ -1,5 +1,3 @@
-'use strict';
-
 const ObjectOutput = require('../model/ObjectOutput');
 const ObjectOutputDetailed = require('../model/ObjectOutputDetailed');
 

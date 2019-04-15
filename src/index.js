@@ -13,9 +13,6 @@
  * Do not edit the class manually.
  *
  */
-
-'use strict';
-
 const ApiClient = require('./ApiClient');
 const AppCommon = require('./model/AppCommon');
 const HashCommon = require('./model/HashCommon');

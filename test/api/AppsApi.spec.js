@@ -1,5 +1,3 @@
-'use strict';
-
 const expect = require('expect.js');
 const setup = require('../helpers/setup');
 const TopazApi = require('../../src/index');
