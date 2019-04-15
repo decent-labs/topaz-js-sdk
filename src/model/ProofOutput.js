@@ -1,5 +1,3 @@
-'use strict';
-
 const ApiClient = require('../ApiClient');
 const ProofCommon = require('./ProofCommon');
 

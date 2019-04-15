@@ -1,5 +1,3 @@
-'use strict';
-
 const HashCommon = require('./HashCommon');
 
 /**

@@ -1,5 +1,3 @@
-  'use strict';
-
   /**
    * The ProofCommon model module.
    * @module model/ProofCommon

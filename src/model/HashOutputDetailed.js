@@ -1,5 +1,3 @@
-'use strict';
-
 const HashOutput = require('./HashOutput');
 
 /**

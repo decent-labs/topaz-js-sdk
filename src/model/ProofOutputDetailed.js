@@ -1,6 +1,3 @@
-
-'use strict';
-
 const HashStubOutput = require('./HashStubOutput');
 const ProofOutput = require('./ProofOutput');
 

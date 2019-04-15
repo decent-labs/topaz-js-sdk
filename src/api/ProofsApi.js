@@ -1,5 +1,3 @@
-'use strict';
-
 const ProofOutput = require('../model/ProofOutput');
 const ProofOutputDetailed = require('../model/ProofOutputDetailed');
 
