@@ -1,6 +1,5 @@
 'use strict';
 
-const ApiClient = require('../ApiClient');
 const AppInput = require('../model/AppInput');
 const AppOutput = require('../model/AppOutput');
 const AppOutputDetailed = require('../model/AppOutputDetailed');
@@ -19,6 +18,10 @@ const AppOutputDetailed = require('../model/AppOutputDetailed');
  * default to {@link module:ApiClient#instance} if unspecified.
  */
 var exports = function(apiClient) {
+  // verify the required parameter 'apiClient' is set
+  if (apiClient === undefined || apiClient === null) {
+    throw new Error("Missing the required parameter 'apiClient' when creating new instance of AppsApi");
+  }
   this.apiClient = apiClient;
 
   /**

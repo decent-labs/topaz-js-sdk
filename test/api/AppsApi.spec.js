@@ -1,15 +1,17 @@
 'use strict';
 
 const expect = require('expect.js');
-
-const TopazApi = require('../../src/index');
 const setup = require('../helpers/setup');
+const TopazApi = require('../../src/index');
 
 describe('AppsApi', function() {
   let appsApi;
 
-  beforeEach('get a fresh api instance', function() {
-    return setup.freshInstance().then(api => appsApi = new TopazApi.AppsApi(api));
+  beforeEach('get a fresh api instance', function(done) {
+    setup.freshInstance().then(api => {
+      appsApi = new TopazApi.AppsApi(api);
+      done();
+    });
   });
 
   describe('createApp', function() {
