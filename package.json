@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "dotenv": "^7.0.0",
+    "multihashes": "^0.4.14",
     "superagent": "^5.0.2"
   },
   "devDependencies": {
