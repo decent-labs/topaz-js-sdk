@@ -8,7 +8,7 @@ describe('HashCommon', function() {
   let instance, hash;
 
   beforeEach(function() {
-    hash = random.sha256HexHash();
+    hash = random.sha256Base58Multihash();
     instance = new TopazApi.HashCommon(hash);
   });
 

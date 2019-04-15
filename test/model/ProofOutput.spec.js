@@ -33,7 +33,7 @@
   
     beforeEach(function() {
       proofId = uuidv4();
-      merkleRoot = random.sha256HexHash();
+      merkleRoot = random.sha256Base58Multihash();
       ethTransaction = '0x' + random.sha256HexHash();
       unixTimestamp = Date.now();
       appId = uuidv4();

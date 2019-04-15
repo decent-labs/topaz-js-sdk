@@ -9,7 +9,7 @@ describe('HashOutput', function() {
   let instance, hash, hashId, objectId, proofId, unixTimestamp;
 
   beforeEach(function() {
-    hash = random.sha256HexHash();
+    hash = random.sha256Base58Multihash();
     hashId = uuidv4();
     unixTimestamp = Date.now()
     objectId = uuidv4();

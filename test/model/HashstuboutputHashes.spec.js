@@ -9,7 +9,7 @@ describe('HashstuboutputHashes', function() {
   let instance, hash, hashId;
 
   beforeEach(function() {
-    hash = random.sha256HexHash();
+    hash = random.sha256Base58Multihash();
     hashId = uuidv4();
     instance = new TopazApi.HashstuboutputHashes(hashId, hash);
   });
