@@ -2,7 +2,7 @@ const expect = require('expect.js');
 const setup = require('../helpers/setup');
 const TopazApi = require('../../src/index');
 
-describe.only('ProofsApi', function() {
+describe('ProofsApi', function() {
   let proofsApi;
 
   beforeEach('get a fresh api instance with an app', function (done) {
