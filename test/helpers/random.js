@@ -8,7 +8,7 @@ const hexString = (length) => {
 }
 
 const sha256HexHash = () => {
-  const hash = crypto.createHmac('sha256', hexString(10)).update(hexString(1024)).digest('hex');
+  const hash = crypto.createHash('sha256').update(hexString(1024)).digest('hex');
   return hash;
 }
 
