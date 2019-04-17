@@ -12,7 +12,7 @@ describe('ObjectsApi', function () {
       return Promise.all([appsApi.createApp({ name: 'test', interval: 3600 }), api]);
     }).then(([{ data }, api]) => {
       appId = data.id;
-      objectsApi = new TopazApi.ObjectsApi(api, appId);
+      objectsApi = new TopazApi.ObjectsApi(api);
       done();
     });
   });
@@ -25,13 +25,13 @@ describe('ObjectsApi', function () {
     };
 
     it('should call createObject successfully using promises', function(done) {  
-      objectsApi.createObject().then(({ data, response }) => {
+      objectsApi.createObject(appId).then(({ data, response }) => {
         expects(data, response, done);
       });
     });
 
     it('should call createObject successfully using callbacks', function(done) {
-      objectsApi.createObject((_, data, response) => {
+      objectsApi.createObject(appId, (_, data, response) => {
         expects(data, response, done);
       });
     });
@@ -45,18 +45,18 @@ describe('ObjectsApi', function () {
     };
 
     it('should call findObjects successfully using promises', function(done) {
-      objectsApi.createObject()
-      .then(() => objectsApi.createObject())
-      .then(() => objectsApi.findObjects())
+      objectsApi.createObject(appId)
+      .then(() => objectsApi.createObject(appId))
+      .then(() => objectsApi.findObjects(appId))
       .then(({ data, response }) => {
         expects(data, response, done)
       });
     });
 
     it('should call findObjects successfully using callbacks', function(done) {
-      objectsApi.createObject(() => {
-        objectsApi.createObject(() => {
-          objectsApi.findObjects((_, data, response) => {
+      objectsApi.createObject(appId, () => {
+        objectsApi.createObject(appId, () => {
+          objectsApi.findObjects(appId, (_, data, response) => {
             expects(data, response, done)
           });
         });
@@ -72,16 +72,16 @@ describe('ObjectsApi', function () {
     };
 
     it('should call getObject successfully using promises', function(done) {
-      objectsApi.createObject()
-      .then(({ data, _ }) => Promise.all([objectsApi.getObject(data.id), data.id]))
+      objectsApi.createObject(appId)
+      .then(({ data, _ }) => Promise.all([objectsApi.getObject(appId, data.id), data.id]))
       .then(([{ data, response }, objectId]) => {
         expects(objectId, data, response, done)
       });
     });
 
     it('should call getObject successfully using callbacks', function(done) {
-      objectsApi.createObject((_, createData, __) => {
-        objectsApi.getObject(createData.id, (_, getData, getResponse) => {
+      objectsApi.createObject(appId, (_, createData, __) => {
+        objectsApi.getObject(appId, createData.id, (_, getData, getResponse) => {
           expects(createData.id, getData, getResponse, done);
         });
       });
