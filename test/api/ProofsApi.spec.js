@@ -4,13 +4,15 @@ const TopazApi = require('../../src/topaz');
 
 describe('ProofsApi', function() {
   let proofsApi;
+  let appId;
 
   beforeEach('get a fresh api instance with an app', function (done) {
     setup.freshInstance().then(api => {
       const appsApi = new TopazApi.AppsApi(api);
       return Promise.all([appsApi.createApp({ name: 'test', interval: 3600 }), api]);
     }).then(([{ data }, api]) => {
-      proofsApi = new TopazApi.ProofsApi(api, data.id);
+      appId = data.id;
+      proofsApi = new TopazApi.ProofsApi(api);
       done();
     });
   });
@@ -23,14 +25,14 @@ describe('ProofsApi', function() {
     };
 
     it('should call findProofs successfully using promises', function(done) {
-      proofsApi.findProofs()
+      proofsApi.findProofs(appId)
       .then(({ data, response }) => {
         expects(data, response, done)
       });
     });
 
     it('should call findProofs successfully using callbacks', function(done) {
-      proofsApi.findProofs((_, data, response) => {
+      proofsApi.findProofs(appId, (_, data, response) => {
         expects(data, response, done)
       });
     });
