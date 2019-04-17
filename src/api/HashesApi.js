@@ -20,7 +20,7 @@ var exports = function(apiClient) {
   if (apiClient === undefined || apiClient === null) {
     throw new Error("Missing the required parameter 'apiClient' when creating new instance of HashesApi");
   }
-  this.apiClient = apiClient;
+  const api = apiClient;
 
   /**
    * Callback function to receive the result of the createHash operation.
@@ -64,7 +64,7 @@ var exports = function(apiClient) {
     var accepts = ['application/json'];
     var returnType = HashOutputDetailed;
 
-    return this.apiClient.callApi(
+    return api.callApi(
       '/apps/{appId}/objects/{objectId}/hashes', 'POST',
       pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
       authNames, contentTypes, accepts, returnType, callback
@@ -111,7 +111,7 @@ var exports = function(apiClient) {
     var accepts = ['application/json'];
     var returnType = [HashOutput];
 
-    return this.apiClient.callApi(
+    return api.callApi(
       '/apps/{appId}/objects/{objectId}/hashes', 'GET',
       pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
       authNames, contentTypes, accepts, returnType, callback
@@ -164,7 +164,7 @@ var exports = function(apiClient) {
     var accepts = ['application/json'];
     var returnType = HashOutputDetailed;
 
-    return this.apiClient.callApi(
+    return api.callApi(
       '/apps/{appId}/objects/{objectId}/hashes/{hashId}', 'GET',
       pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
       authNames, contentTypes, accepts, returnType, callback

@@ -19,7 +19,7 @@ var exports = function(apiClient) {
   if (apiClient === undefined || apiClient === null) {
     throw new Error("Missing the required parameter 'apiClient' when creating new instance of ObjectsApi");
   }
-  this.apiClient = apiClient;
+  const api = apiClient;
 
   /**
    * Callback function to receive the result of the createObject operation.
@@ -55,7 +55,7 @@ var exports = function(apiClient) {
     var accepts = ['application/json'];
     var returnType = ObjectOutputDetailed;
 
-    return this.apiClient.callApi(
+    return api.callApi(
       '/apps/{appId}/objects', 'POST',
       pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
       authNames, contentTypes, accepts, returnType, callback
@@ -96,7 +96,7 @@ var exports = function(apiClient) {
     var accepts = ['application/json'];
     var returnType = [ObjectOutput];
 
-    return this.apiClient.callApi(
+    return api.callApi(
       '/apps/{appId}/objects', 'GET',
       pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
       authNames, contentTypes, accepts, returnType, callback
@@ -143,7 +143,7 @@ var exports = function(apiClient) {
     var accepts = ['application/json'];
     var returnType = ObjectOutputDetailed;
 
-    return this.apiClient.callApi(
+    return api.callApi(
       '/apps/{appId}/objects/{objectId}', 'GET',
       pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
       authNames, contentTypes, accepts, returnType, callback

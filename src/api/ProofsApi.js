@@ -19,7 +19,7 @@ var exports = function(apiClient) {
   if (apiClient === undefined || apiClient === null) {
     throw new Error("Missing the required parameter 'apiClient' when creating new instance of ProofsApi");
   }
-  this.apiClient = apiClient;
+  const api = apiClient;
 
   /**
    * Callback function to receive the result of the findProofs operation.
@@ -55,7 +55,7 @@ var exports = function(apiClient) {
     var accepts = ['application/json'];
     var returnType = [ProofOutput];
 
-    return this.apiClient.callApi(
+    return api.callApi(
       '/apps/{appId}/proofs', 'GET',
       pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
       authNames, contentTypes, accepts, returnType, callback
@@ -102,7 +102,7 @@ var exports = function(apiClient) {
     var accepts = ['application/json'];
     var returnType = ProofOutputDetailed;
 
-    return this.apiClient.callApi(
+    return api.callApi(
       '/apps/{appId}/proofs/{proofId}', 'GET',
       pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
       authNames, contentTypes, accepts, returnType, callback
