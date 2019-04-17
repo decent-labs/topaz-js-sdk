@@ -1,7 +1,7 @@
 require('dotenv').config();
 const axios = require('axios');
 
-const TopazApi = require('../../src/index')
+const TopazApi = require('../../src/topaz')
 const random = require('./random');
 
 const apiKey = () => {

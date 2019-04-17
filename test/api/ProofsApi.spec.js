@@ -1,6 +1,6 @@
 const expect = require('expect.js');
 const setup = require('../helpers/setup');
-const TopazApi = require('../../src/index');
+const TopazApi = require('../../src/topaz');
 
 describe('ProofsApi', function() {
   let proofsApi;
