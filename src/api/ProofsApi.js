@@ -36,15 +36,10 @@ var exports = function(apiClient) {
    * @param {module:api/ProofsApi~findProofsCallback} callback The callback function, accepting three arguments: error, data, response
    * data is of type: {@link Array.<module:model/ProofOutput>}
    */
-  this.findProofs = function(appId, callback) {
-    // verify the required parameter 'appId' is set
-    if (appId === undefined || appId === null) {
-      throw new Error("Missing the required parameter 'appId' when calling findProofs");
-    }
-
+  this.findProofs = function(callback) {
     var postBody = null;
 
-    var pathParams = { appId };
+    var pathParams = { appId: api.appId };
     var queryParams = {};
     var collectionQueryParams = {};
     var headerParams = {};
@@ -78,12 +73,7 @@ var exports = function(apiClient) {
    * @param {module:api/ProofsApi~getProofsCallback} callback The callback function, accepting three arguments: error, data, response
    * data is of type: {@link module:model/ProofOutputDetailed}
    */
-  this.getProof = function(appId, proofId, callback) {
-    // verify the required parameter 'appId' is set
-    if (appId === undefined || appId === null) {
-      throw new Error("Missing the required parameter 'appId' when calling getProof");
-    }
-
+  this.getProof = function(proofId, callback) {
     // verify the required parameter 'proofId' is set
     if (proofId === undefined || proofId === null) {
       throw new Error("Missing the required parameter 'proofId' when calling getProof");
@@ -91,7 +81,7 @@ var exports = function(apiClient) {
 
     var postBody = null;
 
-    var pathParams = { appId, proofId };
+    var pathParams = { appId: api.appId, proofId };
     var queryParams = {};
     var collectionQueryParams = {};
     var headerParams = {};

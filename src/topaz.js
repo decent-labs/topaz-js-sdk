@@ -1,23 +1,18 @@
 const ApiClient = require('./ApiClient');
-const AppCommon = require('./model/AppCommon');
 const HashCommon = require('./model/HashCommon');
 const HashStubOutput = require('./model/HashStubOutput');
 const HashstuboutputHashes = require('./model/HashstuboutputHashes');
 const ObjectCommon = require('./model/ObjectCommon');
 const ProofCommon = require('./model/ProofCommon');
-const AppInput = require('./model/AppInput');
-const AppOutput = require('./model/AppOutput');
 const HashInput = require('./model/HashInput');
 const HashOutput = require('./model/HashOutput');
 const ObjectInput = require('./model/ObjectInput');
 const ObjectOutput = require('./model/ObjectOutput');
 const ProofInput = require('./model/ProofInput');
 const ProofOutput = require('./model/ProofOutput');
-const AppOutputDetailed = require('./model/AppOutputDetailed');
 const HashOutputDetailed = require('./model/HashOutputDetailed');
 const ObjectOutputDetailed = require('./model/ObjectOutputDetailed');
 const ProofOutputDetailed = require('./model/ProofOutputDetailed');
-const AppsApi = require('./api/AppsApi');
 const HashesApi = require('./api/HashesApi');
 const ObjectsApi = require('./api/ObjectsApi');
 const ProofsApi = require('./api/ProofsApi');
@@ -60,11 +55,6 @@ var exports = {
    */
   ApiClient: ApiClient,
   /**
-   * The AppCommon model constructor.
-   * @property {module:model/AppCommon}
-   */
-  AppCommon: AppCommon,
-  /**
    * The HashCommon model constructor.
    * @property {module:model/HashCommon}
    */
@@ -89,16 +79,6 @@ var exports = {
    * @property {module:model/ProofCommon}
    */
   ProofCommon: ProofCommon,
-  /**
-   * The AppInput model constructor.
-   * @property {module:model/AppInput}
-   */
-  AppInput: AppInput,
-  /**
-   * The AppOutput model constructor.
-   * @property {module:model/AppOutput}
-   */
-  AppOutput: AppOutput,
   /**
    * The HashInput model constructor.
    * @property {module:model/HashInput}
@@ -130,11 +110,6 @@ var exports = {
    */
   ProofOutput: ProofOutput,
   /**
-   * The AppOutputDetailed model constructor.
-   * @property {module:model/AppOutputDetailed}
-   */
-  AppOutputDetailed: AppOutputDetailed,
-  /**
    * The HashOutputDetailed model constructor.
    * @property {module:model/HashOutputDetailed}
    */
@@ -149,11 +124,6 @@ var exports = {
    * @property {module:model/ProofOutputDetailed}
    */
   ProofOutputDetailed: ProofOutputDetailed,
-  /**
-   * The AppsApi service constructor.
-   * @property {module:api/AppsApi}
-   */
-  AppsApi: AppsApi,
   /**
    * The HashesApi service constructor.
    * @property {module:api/HashesApi}
