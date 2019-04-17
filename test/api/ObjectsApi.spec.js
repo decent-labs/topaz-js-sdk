@@ -12,13 +12,13 @@ describe('ObjectsApi', () => {
       };
   
       it('should call createObject successfully using promises', (done) => {
-        create()(appId()).then(({ data, response }) => {
+        create()().then(({ data, response }) => {
           expects(data, response, done);
         });
       });
   
       it('should call createObject successfully using callbacks', (done) => {
-        create()(appId(), (_, data, response) => {
+        create()((_, data, response) => {
           expects(data, response, done);
         });
       });
@@ -32,18 +32,18 @@ describe('ObjectsApi', () => {
       };
   
       it('should call findObjects successfully using promises', (done) => {
-        create()(appId())
-        .then(() => create()(appId()))
-        .then(() => find()(appId()))
+        create()()
+        .then(() => create()())
+        .then(() => find()())
         .then(({ data, response }) => {
           expects(data, response, done)
         });
       });
   
       it('should call findObjects successfully using callbacks', (done) => {
-        create()(appId(), () => {
-          create()(appId(), () => {
-            find()(appId(), (_, data, response) => {
+        create()(() => {
+          create()(() => {
+            find()((_, data, response) => {
               expects(data, response, done)
             });
           });
@@ -59,16 +59,16 @@ describe('ObjectsApi', () => {
       };
   
       it('should call getObject successfully using promises', (done) => {
-        create()(appId())
-        .then(({ data, _ }) => Promise.all([get()(appId(), data.id), data.id]))
+        create()()
+        .then(({ data, _ }) => Promise.all([get()(data.id), data.id]))
         .then(([{ data, response }, objectId]) => {
           expects(objectId, data, response, done)
         });
       });
   
       it('should call getObject successfully using callbacks', (done) => {
-        create()(appId(), (_, createData, __) => {
-          get()(appId(), createData.id, (_, getData, getResponse) => {
+        create()((_, createData, __) => {
+          get()(createData.id, (_, getData, getResponse) => {
             expects(createData.id, getData, getResponse, done);
           });
         });
