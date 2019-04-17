@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "Javascript SDK for the Topaz API",
   "license": "Unlicense",
-  "main": "src/index.js",
+  "main": "src/topaz.js",
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha --recursive"
   },
