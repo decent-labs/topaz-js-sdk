@@ -8,6 +8,8 @@ const topazExports = (opts) => {
   const proofsApi = new Topaz.ProofsApi(api);
 
   return {
+    appId: opts.appId,
+
     objects: {
       create: objectsApi.createObject,
       find: objectsApi.findObjects,
