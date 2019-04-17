@@ -32,10 +32,7 @@ describe('ProofsApi', () => {
 
     beforeEach('get a fresh api instance with an app', (done) => {
       setup.freshInstanceLegacy().then(api => {
-        const appsApi = new TopazApi.AppsApi(api);
-        return Promise.all([appsApi.createApp({ name: 'test', interval: 3600 }), api]);
-      }).then(([{ data }, api]) => {
-        appId = data.id;
+        appId = api.appId;
         proofsApi = new TopazApi.ProofsApi(api);
         done();
       });
@@ -53,9 +50,7 @@ describe('ProofsApi', () => {
 
     beforeEach('get a fresh api instance with an app', (done) => {
       setup.freshInstance().then(api => {
-        return Promise.all([api.apps.create({ name: 'test', interval: 3600 }), api]);
-      }).then(([{ data }, api]) => {
-        appId = data.id;
+        appId = api.appId;
         proofs = api.proofs;
         done();
       });

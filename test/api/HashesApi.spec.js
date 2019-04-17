@@ -91,10 +91,7 @@ describe('HashesApi', () => {
 
     beforeEach('get a fresh api instance with an app and object', (done) => {
       setup.freshInstanceLegacy().then(api => {
-        const appsApi = new TopazApi.AppsApi(api);
-        return Promise.all([appsApi.createApp({ name: 'test', interval: 3600 }), api]);
-      }).then(([{ data }, api]) => {
-        appId = data.id;
+        appId = api.appId;
         const objectsApi = new TopazApi.ObjectsApi(api);
         return Promise.all([objectsApi.createObject(appId), api]);
       }).then(([{ data }, api]) => {
@@ -119,9 +116,7 @@ describe('HashesApi', () => {
 
     beforeEach('get a fresh api instance with an app and object', (done) => {
       setup.freshInstance().then(api => {
-        return Promise.all([api.apps.create({ name: 'test', interval: 3600 }), api]);
-      }).then(([{ data }, api]) => {
-        appId = data.id;
+        appId = api.appId;
         return Promise.all([api.objects.create(appId), api]);
       }).then(([{ data }, api]) => {
         objectId = data.id;
