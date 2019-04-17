@@ -1,5 +1,5 @@
 const expect = require('expect.js');
-const TopazApi = require('../../src/index');
+const TopazApi = require('../../src/topaz');
 
 describe('HashOutputDetailed', function() {
   let instance;

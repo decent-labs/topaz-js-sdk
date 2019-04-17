@@ -1,6 +1,6 @@
 const expect = require('expect.js');
 const random = require('../helpers/random');
-const TopazApi = require('../../src/index');
+const TopazApi = require('../../src/topaz');
 
 describe('HashCommon', function() {
   let instance, hash;

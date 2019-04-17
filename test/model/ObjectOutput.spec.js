@@ -1,6 +1,6 @@
 const expect = require('expect.js');
 const uuidv4 = require('uuid/v4');
-const TopazApi = require('../../src/index');
+const TopazApi = require('../../src/topaz');
 
 describe('ObjectOutput', function() {
   let instance, appId, objectId;
