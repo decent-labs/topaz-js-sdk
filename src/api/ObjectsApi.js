@@ -36,15 +36,10 @@ var exports = function(apiClient) {
    * @param {module:api/ObjectsApi~createObjectCallback} callback The callback function, accepting three arguments: error, data, response
    * data is of type: {@link module:model/ObjectOutputDetailed}
    */
-  this.createObject = function(appId, callback) {
-    // verify the required parameter 'appId' is set
-    if (appId === undefined || appId === null) {
-      throw new Error("Missing the required parameter 'appId' when calling createObject");
-    }
-
+  this.createObject = function(callback) {
     var postBody = null;
 
-    var pathParams = { appId };
+    var pathParams = { appId: api.appId };
     var queryParams = {};
     var collectionQueryParams = {};
     var headerParams = {};
@@ -77,15 +72,10 @@ var exports = function(apiClient) {
    * @param {module:api/ObjectsApi~findObjectsCallback} callback The callback function, accepting three arguments: error, data, response
    * data is of type: {@link Array.<module:model/ObjectOutput>}
    */
-  this.findObjects = function(appId, callback) {
-    // verify the required parameter 'appId' is set
-    if (appId === undefined || appId === null) {
-      throw new Error("Missing the required parameter 'appId' when calling findObjects");
-    }
-
+  this.findObjects = function(callback) {
     var postBody = null;
 
-    var pathParams = { appId };
+    var pathParams = { appId: api.appId };
     var queryParams = {};
     var collectionQueryParams = {};
     var headerParams = {};
@@ -119,12 +109,7 @@ var exports = function(apiClient) {
    * @param {module:api/ObjectsApi~getObjectCallback} callback The callback function, accepting three arguments: error, data, response
    * data is of type: {@link module:model/ObjectOutputDetailed}
    */
-  this.getObject = function(appId, objectId, callback) {
-    // verify the required parameter 'appId' is set
-    if (appId === undefined || appId === null) {
-      throw new Error("Missing the required parameter 'appId' when calling getObject");
-    }
-    
+  this.getObject = function(objectId, callback) {
     // verify the required parameter 'objectId' is set
     if (objectId === undefined || objectId === null) {
       throw new Error("Missing the required parameter 'objectId' when calling getObject");
@@ -132,7 +117,7 @@ var exports = function(apiClient) {
 
     var postBody = null;
 
-    var pathParams = { appId, objectId };
+    var pathParams = { appId: api.appId, objectId };
     var queryParams = {};
     var collectionQueryParams = {};
     var headerParams = {};

@@ -40,12 +40,7 @@ var exports = function(apiClient) {
    * @param {module:api/HashesApi~createHashCallback} callback The callback function, accepting three arguments: error, data, response
    * data is of type: {@link module:model/HashOutputDetailed}
    */
-  this.createHash = function(appId, objectId, { hash }, callback) {
-    // verify the required parameter 'appId' is set
-    if (appId === undefined || appId === null) {
-      throw new Error("Missing the required parameter 'appId' when calling createHash");
-    }
-
+  this.createHash = function(objectId, { hash }, callback) {
     // verify the required parameter 'objectId' is set
     if (objectId === undefined || objectId === null) {
       throw new Error("Missing the required parameter 'objectId' when calling createHash");
@@ -53,7 +48,7 @@ var exports = function(apiClient) {
 
     var postBody = new HashInput(hash);
 
-    var pathParams = { appId, objectId };
+    var pathParams = { appId: api.appId, objectId };
     var queryParams = {};
     var collectionQueryParams = {};
     var headerParams = {};
@@ -87,12 +82,7 @@ var exports = function(apiClient) {
    * @param {module:api/HashesApi~findHashesCallback} callback The callback function, accepting three arguments: error, data, response
    * data is of type: {@link Array.<module:model/HashOutput>}
    */
-  this.findHashes = function(appId, objectId, callback) {
-    // verify the required parameter 'appId' is set
-    if (appId === undefined || appId === null) {
-      throw new Error("Missing the required parameter 'appId' when calling findHashes");
-    }
-
+  this.findHashes = function(objectId, callback) {
     // verify the required parameter 'objectId' is set
     if (objectId === undefined || objectId === null) {
       throw new Error("Missing the required parameter 'objectId' when calling findHashes");
@@ -100,7 +90,7 @@ var exports = function(apiClient) {
 
     var postBody = null;
 
-    var pathParams = { appId, objectId };
+    var pathParams = { appId: api.appId, objectId };
     var queryParams = {};
     var collectionQueryParams = {};
     var headerParams = {};
@@ -135,12 +125,7 @@ var exports = function(apiClient) {
    * @param {module:api/HashesApi~getHashCallback} callback The callback function, accepting three arguments: error, data, response
    * data is of type: {@link module:model/HashOutputDetailed}
    */
-  this.getHash = function(appId, objectId, hashId, callback) {
-    // verify the required parameter 'appId' is set
-    if (appId === undefined || appId === null) {
-      throw new Error("Missing the required parameter 'appId' when calling getHash");
-    }
-
+  this.getHash = function(objectId, hashId, callback) {
     // verify the required parameter 'objectId' is set
     if (objectId === undefined || objectId === null) {
       throw new Error("Missing the required parameter 'objectId' when calling getHash");
@@ -153,7 +138,7 @@ var exports = function(apiClient) {
 
     var postBody = null;
 
-    var pathParams = { appId, objectId, hashId };
+    var pathParams = { appId: api.appId, objectId, hashId };
     var queryParams = {};
     var collectionQueryParams = {};
     var headerParams = {};
