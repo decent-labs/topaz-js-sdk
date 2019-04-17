@@ -110,16 +110,13 @@ var exports = function(apiClient) {
    * data is of type: {@link module:model/AppOutputDetailed}
    */
   this.getApp = function(appId, callback) {
-    var postBody = null;
-
     // verify the required parameter 'appId' is set
     if (appId === undefined || appId === null) {
       throw new Error("Missing the required parameter 'appId' when calling getApp");
     }
+    var postBody = null;
 
-    var pathParams = {
-      'appId': appId
-    };
+    var pathParams = { appId };
     var queryParams = {};
     var collectionQueryParams = {};
     var headerParams = {};
