@@ -7,9 +7,6 @@
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha --recursive"
   },
-  "browser": {
-    "fs": false
-  },
   "dependencies": {
     "multihashes": "^0.4.14",
     "superagent": "^5.0.2"
