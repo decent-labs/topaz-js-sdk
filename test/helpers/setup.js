@@ -1,7 +1,7 @@
 require('dotenv').config();
 const axios = require('axios');
 
-const TopazApi = require('../../src/topaz')
+const TopazApi = require('../../src/topaz');
 const random = require('./random');
 
 const apiKey = () => {
@@ -18,11 +18,11 @@ const apiKey = () => {
   });
 }
 
-const freshInstance = () => {
+const freshInstanceLegacy = () => {
   return apiKey().then(apiKey => {
     const opts = { basePath: process.env.BASE_PATH, apiKey };
     return new TopazApi.ApiClient(opts)
   });
 }
 
-module.exports = { freshInstance }
+module.exports = { freshInstanceLegacy }

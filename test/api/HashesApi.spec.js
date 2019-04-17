@@ -8,7 +8,7 @@ describe('HashesApi', function() {
   let appId, objectId;
 
   beforeEach('get a fresh api instance with an app and object', function (done) {
-    setup.freshInstance().then(api => {
+    setup.freshInstanceLegacy().then(api => {
       const appsApi = new TopazApi.AppsApi(api);
       return Promise.all([appsApi.createApp({ name: 'test', interval: 3600 }), api]);
     }).then(([{ data }, api]) => {
