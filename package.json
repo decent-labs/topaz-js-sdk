@@ -1,22 +1,19 @@
 {
-  "name": "topaz.js",
+  "name": "topaz",
   "version": "0.1.0",
   "description": "Javascript SDK for the Topaz API",
   "license": "Unlicense",
   "main": "src/index.js",
   "scripts": {
-    "test": "./node_modules/mocha/bin/mocha --recursive"
-  },
-  "browser": {
-    "fs": false
+    "test": "mocha --recursive"
   },
   "dependencies": {
-    "dotenv": "^7.0.0",
     "multihashes": "^0.4.14",
     "superagent": "^5.0.2"
   },
   "devDependencies": {
     "axios": "^0.18.0",
+    "dotenv": "^7.0.0",
     "expect.js": "~0.3.1",
     "mocha": "~2.3.4",
     "sinon": "1.17.3",
