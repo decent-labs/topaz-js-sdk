@@ -32,6 +32,9 @@ var exports = function(opts) {
   if (!opts.apiKey) throw new Error("Missing the required parameter 'apiKey' when instantiating Topaz");
   this.authentications['API Key'].apiKey = opts.apiKey
 
+  if (!opts.appId) throw new Error("Missing the required parameter 'appId' when instantiating Topaz");
+  this.appId = opts.appId;
+
   /**
    * The default HTTP headers to be included for all API calls.
    * @type {Array.<String>}
