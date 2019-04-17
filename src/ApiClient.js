@@ -29,7 +29,8 @@ var exports = function(opts) {
   this.authentications = {
     'API Key': {type: 'apiKey', 'in': 'header', name: 'Authorization'}
   };
-  if (opts.apiKey) this.authentications['API Key'].apiKey = opts.apiKey
+  if (!opts.apiKey) throw new Error("Missing the required parameter 'apiKey' when instantiating Topaz");
+  this.authentications['API Key'].apiKey = opts.apiKey
 
   /**
    * The default HTTP headers to be included for all API calls.
