@@ -1,4 +1,5 @@
 const Topaz = require('./topaz');
+const trust = require('./delightful/trust');
 
 const topazExports = (opts) => {
   const api = new Topaz.ApiClient(opts);
@@ -9,6 +10,8 @@ const topazExports = (opts) => {
 
   return {
     appId: opts.appId,
+
+    trust: (input, objectId) => trust(input, objectId, objectsApi, hashesApi),
 
     objects: {
       create: objectsApi.createObject,
