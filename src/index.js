@@ -2,17 +2,22 @@ const Topaz = require('./topaz');
 const trust = require('./delightful/trust');
 
 const topazExports = (opts) => {
-  const api = new Topaz.ApiClient(opts);
-
-  const objectsApi = new Topaz.ObjectsApi(api);
-  const hashesApi = new Topaz.HashesApi(api);
-  const proofsApi = new Topaz.ProofsApi(api);
+  const api = baseApi(opts);
 
   return {
     appId: opts.appId,
+    trust: (input, objectId) => trust(input, objectId, api),
+    ...api
+  };
+};
 
-    trust: (input, objectId) => trust(input, objectId, objectsApi, hashesApi),
+const baseApi = (opts) => {
+  const apiClient = new Topaz.ApiClient(opts);
+  const objectsApi = new Topaz.ObjectsApi(apiClient);
+  const hashesApi = new Topaz.HashesApi(apiClient);
+  const proofsApi = new Topaz.ProofsApi(apiClient);
 
+  return {
     objects: {
       create: objectsApi.createObject,
       find: objectsApi.findObjects,
@@ -28,6 +33,6 @@ const topazExports = (opts) => {
       get: proofsApi.getProof
     }
   };
-}
+};
 
 module.exports = topazExports;
