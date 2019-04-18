@@ -11,7 +11,7 @@ const topazExports = (opts) => {
   return {
     appId: opts.appId,
 
-    trust: (input) => trust(input, objectsApi, hashesApi),
+    trust: (input, objectId) => trust(input, objectId, objectsApi, hashesApi),
 
     objects: {
       create: objectsApi.createObject,
