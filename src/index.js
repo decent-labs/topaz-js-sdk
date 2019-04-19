@@ -1,5 +1,6 @@
 const Topaz = require('./topaz');
 const trust = require('./delightful/trust');
+const verify = require('./delightful/verify');
 
 const topazExports = (opts) => {
   const api = baseApi(opts);
@@ -7,6 +8,7 @@ const topazExports = (opts) => {
   return {
     appId: opts.appId,
     trust: (input, objectId) => trust(input, objectId, api),
+    verify: (input, objectId) => verify(input, objectId, api),
     ...api
   };
 };
