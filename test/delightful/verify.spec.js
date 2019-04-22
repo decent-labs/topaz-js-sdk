@@ -33,6 +33,13 @@ describe('Verify', () => {
             done();
           });
         });
+
+        it('has the right status', done => {
+          topaz.verify(inputData, objectId).then(response => {
+            expect(response.verified).to.be('unverified');
+            done();
+          });
+        });
       });
 
       describe('on an object with many hashes', () => {
@@ -63,6 +70,13 @@ describe('Verify', () => {
             done();
           });
         });
+
+        it('has the right status', done => {
+          topaz.verify(inputData, objectId).then(response => {
+            expect(response.verified).to.be('unverified');
+            done();
+          });
+        });
       });
     });
 
@@ -82,6 +96,13 @@ describe('Verify', () => {
           it('is not the most recent (last) hash', done => {
             topaz.verify(inputData, objectId).then(response => {
               expect(response.hashes[response.hashes.length - 1].hash).to.not.be(multihash(inputData));
+              done();
+            });
+          });
+
+          it('has the right status', done => {
+            topaz.verify(inputData, objectId).then(response => {
+              expect(response.verified).to.be('outdated');
               done();
             });
           });
@@ -115,6 +136,13 @@ describe('Verify', () => {
               done();
             });
           });
+
+          it('has the right status', done => {
+            topaz.verify(inputData, objectId).then(response => {
+              expect(response.verified).to.be('pending');
+              done();
+            });
+          });
         });
       });
 
@@ -135,6 +163,13 @@ describe('Verify', () => {
             });
           });
 
+          it('has the right status', done => {
+            topaz.verify(inputData, objectId).then(response => {
+              expect(response.verified).to.be('outdated');
+              done();
+            });
+          });
+
           it('is in the hash list though (more than once)', done => {
             topaz.verify(inputData, objectId).then(response => {
               expect(response.hashes.filter(hash => hash.hash == multihash(inputData))).to.have.length(2);
@@ -147,6 +182,13 @@ describe('Verify', () => {
           it('is the most recent (last) hash', done => {
             topaz.verify(inputData, objectId).then(response => {
               expect(response.hashes[response.hashes.length - 1].hash).to.be(multihash(inputData));
+              done();
+            });
+          });
+
+          it('has the right status', done => {
+            topaz.verify(inputData, objectId).then(response => {
+              expect(response.verified).to.be('pending');
               done();
             });
           });
