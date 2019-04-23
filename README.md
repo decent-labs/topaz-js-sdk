@@ -5,11 +5,13 @@ Javascript client for Topaz
 - API version: 0.1.21
 - Package version: 0.1.0
 
-For more information, please visit [https://topaz.io](https://topaz.io)
+For more information, please visit [https://topaz.io](https://topaz.io).
+
+If you'd like to learn more about how the API works, wiew the [API docs](https://topaz.docs.stoplight.io).
 
 ## Installation
 
-### npm
+### npm / yarn
 
 Install `topaz` via:
 
@@ -25,7 +27,7 @@ yarn add topaz
 
 ## Getting Started
 
-Please follow the [installation](#installation) instructions, then require `topaz`.
+Please follow the installation instructions, then require `topaz`.
 
 ```javascript
 const topaz = require('topaz')({ apiKey: 'your-api-key', appId: 'your-app-id' })
@@ -49,9 +51,11 @@ topaz.trust(valuableData).then(console.log);
 //     }]
 //   }
 // }
+```
 
-🕒🕞🕓
+## 🕒 🕞 🕓
 
+```javascript
 // some time later (after your app's proofing interval has expired), call verify() to get a proof that your data existed at a point in time
 topaz.verify(valuableData, newObject.id).then(console.log);
 // {
