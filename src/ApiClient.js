@@ -465,7 +465,7 @@ exports.prototype.callApi = function callApi(path, httpMethod, pathParams,
         if (!error) {
           try {
             const data = deserialize(response);
-            resolve({ data, response });
+            resolve(data);
           } catch (err) {
             reject(err);
           }
@@ -485,7 +485,7 @@ exports.prototype.callApi = function callApi(path, httpMethod, pathParams,
             error = err;
           }
         }
-        callback(error, data, response);
+        callback(error, data);
       }
     });
     return request;
