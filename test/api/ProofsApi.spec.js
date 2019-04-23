@@ -5,21 +5,20 @@ const TopazApi = require('../../src/topaz');
 describe('ProofsApi', () => {
   const proofsTests = (find) => {
     describe('findProofs', () => {
-      const expects = (data, response, done) => {
+      const expects = (data, done) => {
         expect(data).to.have.length(0);
-        expect(response.statusCode).to.be(200);
         done();
       };
   
-      it('should call findProofs successfully using promises', (done) => {
-        find()().then(({ data, response }) => {
-          expects(data, response, done)
+      it('should call findProofs successfully using promises', done => {
+        find()().then(data => {
+          expects(data, done)
         });
       });
   
-      it('should call findProofs successfully using callbacks', (done) => {
-        find()((_, data, response) => {
-          expects(data, response, done)
+      it('should call findProofs successfully using callbacks', done => {
+        find()((_, data) => {
+          expects(data, done)
         });
       });
     });
@@ -28,7 +27,7 @@ describe('ProofsApi', () => {
   describe('legacy interface', () => {
     let proofsApi;
 
-    beforeEach('get a fresh api instance with an app', (done) => {
+    beforeEach('get a fresh api instance with an app', done => {
       setup.freshInstanceLegacy().then(api => {
         proofsApi = new TopazApi.ProofsApi(api);
         done();
@@ -43,7 +42,7 @@ describe('ProofsApi', () => {
   describe('new interface', () => {
     let proofs;
 
-    beforeEach('get a fresh api instance with an app', (done) => {
+    beforeEach('get a fresh api instance with an app', done => {
       setup.freshInstance().then(api => {
         proofs = api.proofs;
         done();

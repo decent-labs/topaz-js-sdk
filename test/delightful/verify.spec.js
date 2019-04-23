@@ -16,7 +16,7 @@ describe('Verify', () => {
     let objectId;
 
     beforeEach('make an object', done => {
-      topaz.objects.create().then(({ data }) => {
+      topaz.objects.create().then(data => {
         objectId = data.id;
         done();
       });
