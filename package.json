@@ -1,21 +1,22 @@
 {
-  "name": "topaz_api",
-  "version": "0.1.17",
-  "description": "_Topaz_API_SpecTo_get_up_and_running_with_Topaz_API_as_quickly_as_possible_read_through_these_docs__PrerequisitesCreate_an_account_at__httpstopaz_io_httpstopaz_io_log_in_and_generate_an_API_Token_Youll_need_an_API_Token_to_create_a_new_app_create_objects_create_hashes_and_view_proofs_All_API_requests_should_be_prefixed_with_v1_indicating_that_youre_targeting_version_1_of_our_API__GuaranteeTopaz_API_follows_Semantic_Versioning__httpssemver_org_so_expect_that_any_breaking_changes_will_be_versioned_under_a_new_route_prefix_",
+  "name": "topaz",
+  "version": "0.1.0",
+  "description": "Javascript SDK for the Topaz API",
   "license": "Unlicense",
   "main": "src/index.js",
   "scripts": {
-    "test": "./node_modules/mocha/bin/mocha --recursive"
-  },
-  "browser": {
-    "fs": false
+    "test": "mocha --recursive"
   },
   "dependencies": {
-    "superagent": "3.7.0"
+    "multihashes": "^0.4.14",
+    "superagent": "^5.0.2"
   },
   "devDependencies": {
+    "axios": "^0.18.0",
+    "dotenv": "^7.0.0",
+    "expect.js": "~0.3.1",
     "mocha": "~2.3.4",
     "sinon": "1.17.3",
-    "expect.js": "~0.3.1"
+    "uuid": "^3.3.2"
   }
 }
