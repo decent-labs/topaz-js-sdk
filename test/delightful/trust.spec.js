@@ -5,7 +5,7 @@ const multihash = require('../../src/utils/hashing');
 describe('Trust', () => {
   let topaz;
 
-  beforeEach('get a fresh api instance', (done) => {
+  beforeEach('get a fresh api instance', done => {
     setup.freshInstance().then(api => {
       topaz = api;
       done();
@@ -13,7 +13,7 @@ describe('Trust', () => {
   });
 
   describe('without an existing object', () => {
-    it('takes binarylike data and returns the data and new api object', (done) => {
+    it('takes binarylike data and returns the data and new api object', done => {
       const inputData = "hello world";
       
       topaz.trust(inputData).then(response => {
@@ -29,14 +29,14 @@ describe('Trust', () => {
   describe('with an existing object', () => {
     let objectId;
 
-    beforeEach('make an object', (done) => {
-      topaz.objects.create().then(({ data }) => {
+    beforeEach('make an object', done => {
+      topaz.objects.create().then(data => {
         objectId = data.id
         done();
       });
     });
 
-    it('takes binarylike data and returns the data and existing api object', (done) => {
+    it('takes binarylike data and returns the data and existing api object', done => {
       const inputData = 'hello world';
       
       topaz.trust(inputData, objectId).then(response => {
@@ -49,7 +49,7 @@ describe('Trust', () => {
       });
     });
 
-    it('appends a hash to the object hash list', (done) => {
+    it('appends a hash to the object hash list', done => {
       const inputData = 'hello world';
       const otherInputData = 'hello galaxy';
 

@@ -5,14 +5,14 @@ const trust = (input, objectId, api) => {
   return getObject(objectId, api)
     .then(objectId => Promise.all([objectId, api.hashes.create(objectId, { hash })]))
     .then(([objectId, _]) => api.objects.get(objectId))
-    .then(({ data }) => ({ data: input, object: data }));
+    .then(data => ({ data: input, object: data }));
 };
 
 const getObject = (objectId, api) => {
   if (objectId !== null && objectId !== undefined) {
     return Promise.resolve(objectId);
   } else {
-    return api.objects.create().then(({ data }) => data.id);
+    return api.objects.create().then(data => data.id);
   }
 };
 

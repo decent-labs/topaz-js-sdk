@@ -5,46 +5,44 @@ const TopazApi = require('../../src/topaz');
 describe('ObjectsApi', () => {
   const objectsTests = (appId, create, find, get) => {
     describe('createObject', () => {
-      const expects = (data, response, done) => {
+      const expects = (data, done) => {
         expect(data.appId).to.be(appId());
-        expect(response.statusCode).to.be(201);
         done();
       };
   
-      it('should call createObject successfully using promises', (done) => {
-        create()().then(({ data, response }) => {
-          expects(data, response, done);
+      it('should call createObject successfully using promises', done => {
+        create()().then(data => {
+          expects(data, done);
         });
       });
   
-      it('should call createObject successfully using callbacks', (done) => {
-        create()((_, data, response) => {
-          expects(data, response, done);
+      it('should call createObject successfully using callbacks', done => {
+        create()((_, data) => {
+          expects(data, done);
         });
       });
     });
   
     describe('findObjects', () => {
-      const expects = (data, response, done) => {
+      const expects = (data, done) => {
         expect(data).to.have.length(2);
-        expect(response.statusCode).to.be(200);
         done();
       };
   
-      it('should call findObjects successfully using promises', (done) => {
+      it('should call findObjects successfully using promises', done => {
         create()()
         .then(() => create()())
         .then(() => find()())
-        .then(({ data, response }) => {
-          expects(data, response, done)
+        .then(data => {
+          expects(data, done)
         });
       });
   
-      it('should call findObjects successfully using callbacks', (done) => {
+      it('should call findObjects successfully using callbacks', done => {
         create()(() => {
           create()(() => {
-            find()((_, data, response) => {
-              expects(data, response, done)
+            find()((_, data) => {
+              expects(data, done)
             });
           });
         });
@@ -52,24 +50,23 @@ describe('ObjectsApi', () => {
     });
   
     describe('getObject', () => {
-      const expects = (objectId, data, response, done) => {
+      const expects = (objectId, data, done) => {
         expect(data.id).to.be(objectId);
-        expect(response.statusCode).to.be(200);
         done();
       };
   
-      it('should call getObject successfully using promises', (done) => {
+      it('should call getObject successfully using promises', done => {
         create()()
-        .then(({ data, _ }) => Promise.all([get()(data.id), data.id]))
-        .then(([{ data, response }, objectId]) => {
-          expects(objectId, data, response, done)
+        .then(data => Promise.all([get()(data.id), data.id]))
+        .then(([data, objectId]) => {
+          expects(objectId, data, done)
         });
       });
   
-      it('should call getObject successfully using callbacks', (done) => {
+      it('should call getObject successfully using callbacks', done => {
         create()((_, createData, __) => {
-          get()(createData.id, (_, getData, getResponse) => {
-            expects(createData.id, getData, getResponse, done);
+          get()(createData.id, (_, data) => {
+            expects(createData.id, data, done);
           });
         });
       });
@@ -80,7 +77,7 @@ describe('ObjectsApi', () => {
     let objectsApi;
     let appId;
 
-    beforeEach('get a fresh api instance with an app', (done) => {
+    beforeEach('get a fresh api instance with an app', done => {
       setup.freshInstanceLegacy().then(api => {
         appId = api.appId;
         objectsApi = new TopazApi.ObjectsApi(api);
@@ -100,7 +97,7 @@ describe('ObjectsApi', () => {
     let objects;
     let appId;
 
-    beforeEach('get a fresh api instance with an app', (done) => {
+    beforeEach('get a fresh api instance with an app', done => {
       setup.freshInstance().then(api => {
         appId = api.appId;
         objects = api.objects;

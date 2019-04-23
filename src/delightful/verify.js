@@ -4,7 +4,7 @@ const verify = (input, objectId, api) => {
   const dataHash = multihash(input);
 
   return api.objects.get(objectId)
-    .then(({ data }) => Promise.all([data, ...getHashes(data, dataHash, api)]))
+    .then(data => Promise.all([data, ...getHashes(data, dataHash, api)]))
     .then(([object, ...hashes]) => Promise.all([object, ...getProofs(hashes, api)]))
     .then(([object, ...hashes]) => finalize(object, hashes, dataHash));
 };
@@ -12,7 +12,7 @@ const verify = (input, objectId, api) => {
 const getHashes = (object, dataHash, api) => {
   return object.hashes.map(hash => {
     if (hash.hash == dataHash) {
-      return api.hashes.get(object.id, hash.id).then(({ data }) => {
+      return api.hashes.get(object.id, hash.id).then(data => {
         hash.proof = data.proofId;
         return hash;
       });
@@ -23,7 +23,7 @@ const getHashes = (object, dataHash, api) => {
 const getProofs = (hashes, api) => {
   return hashes.map(hash => {
     if (hash.proof !== null && hash.proof !== undefined) {
-      return api.proofs.get(hash.proof).then(({ data }) => {
+      return api.proofs.get(hash.proof).then(data => {
         hash.proof = data;
         return hash;
       });
