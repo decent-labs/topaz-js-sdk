@@ -1,4 +1,7 @@
 const Topaz = require('./topaz');
+
+const multihash = require('./utils/hashing');
+
 const trust = require('./delightful/trust');
 const verify = require('./delightful/verify');
 
@@ -9,6 +12,7 @@ const topazExports = (opts) => {
     appId: opts.appId,
     trust: (input, objectId) => trust(input, objectId, api),
     verify: (input, objectId) => verify(input, objectId, api),
+    utils: { hash: (input) => multihash(input) },
     ...api
   };
 };
