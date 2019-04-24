@@ -7,6 +7,14 @@
   "scripts": {
     "test": "mocha --recursive"
   },
+  "homepage": "https://topaz.io",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/decentorganization/topaz-js-sdk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/decentorganization/topaz-js-sdk/issues"
+  },
   "dependencies": {
     "multihashes": "^0.4.14",
     "superagent": "^5.0.2"
