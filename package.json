@@ -1,11 +1,19 @@
 {
   "name": "topaz",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Javascript SDK for the Topaz API",
   "license": "Unlicense",
   "main": "src/index.js",
   "scripts": {
     "test": "mocha --recursive"
+  },
+  "homepage": "https://topaz.io",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/decentorganization/topaz-js-sdk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/decentorganization/topaz-js-sdk/issues"
   },
   "dependencies": {
     "multihashes": "^0.4.14",
