@@ -3,7 +3,7 @@
 Javascript client for Topaz
 
 - API version: 0.1.21
-- Package version: 0.1.0
+- Package version: 0.1.1
 
 For more information, please visit [https://topaz.io](https://topaz.io).
 
