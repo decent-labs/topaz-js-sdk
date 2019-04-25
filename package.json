@@ -1,6 +1,6 @@
 {
   "name": "topaz",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Javascript SDK for the Topaz API",
   "license": "Unlicense",
   "main": "src/index.js",
