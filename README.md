@@ -53,6 +53,8 @@ topaz.trust(valuableData).then(console.log);
 // }
 ```
 
+The `trust()` function optinally takes an object's `id` as a second parameter, if you want to append a hash to an existing object instead of creating a new object.
+
 ## 🕒 🕞 🕓
 
 ```javascript
