@@ -72,7 +72,7 @@ topaz.trust(valuableData).then(console.log);
 
 It should return:
 
-```json
+```javascript
 {
   data: 'my valuable data',
   object: {
@@ -112,7 +112,7 @@ topaz.verify(valuableData, objectId).then(console.log);
 
 It should return:
 
-```json
+```javascript
 {
   appId: 'a91d6514-4ace-4357-baa1-dea2d90e9c21',
   id: '29cb3c6a-eb43-41f0-b5d4-3a8d5a10d276',
@@ -161,7 +161,7 @@ topaz.objects.create(console.log);
 
 should return:
 
-```json
+```javascript
 {
   appId: '431ca6dc-0ad0-4b66-a13c-59f7967b664a',
   id: 'a3a5709f-6d55-4757-b2cf-13acc20c04a2',
@@ -185,7 +185,7 @@ topaz.objects.find(console.log);
 
 should return:
 
-```json
+```javascript
 [
   {
     appId: '88ec6e52-65ed-483a-b507-bc51ec4d3ab4',
@@ -218,7 +218,7 @@ topaz.objects.get(objectId, console.log);
 
 should return:
 
-```json
+```javascript
 {
   appId: 'b4ea626a-0730-43da-ae19-239a895d58d5',
   id: '8535ce2b-f4d8-49fe-b1ab-aa389af3b377',
@@ -258,7 +258,7 @@ topaz.hashes.create(objectId, { hash: dataHash }, console.log);
 
 should return:
 
-```json
+```javascript
 {
   hash: 'QmRNRBDUT6MvSnA7pRHM7yPT8HMdzEzNHjs57TKNtQo8jQ',
   id: '1917b485-c456-4f61-8ef0-b80fd38235db',
@@ -288,7 +288,7 @@ topaz.hashes.find(objectId, console.log);
 
 should return:
 
-```json
+```javascript
 [
   {
     hash: 'QmRNRBDUT6MvSnA7pRHM7yPT8HMdzEzNHjs57TKNtQo8jQ',
@@ -329,7 +329,7 @@ topaz.hashes.get(objectId, hashId, console.log);
 
 should return:
 
-```json
+```javascript
 {
   hash: 'QmRNRBDUT6MvSnA7pRHM7yPT8HMdzEzNHjs57TKNtQo8jQ',
   id: 'efba09b7-1a10-4673-b5d3-1e42d8715977',
@@ -357,7 +357,7 @@ topaz.proofs.find(console.log);
 
 should return:
 
-```json
+```javascript
 [
   {
     id: '8c2ae6f9-d26e-49b1-b43d-ad516c87bf51',
@@ -396,7 +396,7 @@ topaz.proofs.get(proofId, console.log);
 
 should return:
 
-```json
+```javascript
 {
   id: '41954453-82b6-4885-8938-e4e1ecc2d0c3',
   merkleRoot: 'QmR1XC1rT7Phd6NX3bA219orD4Pt4dmdGKmC5eg74xp42P',
