@@ -410,6 +410,8 @@ should return:
 }
 ```
 
-Made with :heart: in:
+-----
+
+Made with 🖤 in:
 * Cleveland, OH
 * Miami, FL
