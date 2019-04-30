@@ -92,7 +92,7 @@ This function optionally takes an object's `id` as a second parameter.
 const valuableData = 'my valuable data';
 const objectId = '29cb3c6a-eb43-41f0-b5d4-3a8d5a10d276';
 
-topaz.trust(valuableData).then(console.log);
+topaz.trust(valuableData, objectId).then(console.log);
 ```
 
 In this case, `trust()` will append the hash of `valuableData` to an object that already exists. This is how Topaz updates the state of an object.
