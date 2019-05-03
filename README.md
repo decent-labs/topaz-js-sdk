@@ -122,13 +122,20 @@ It should return:
     proof: {
       id: '41954453-82b6-4885-8938-e4e1ecc2d0c3',
       merkleRoot: 'QmR1XC1rT7Phd6NX3bA219orD4Pt4dmdGKmC5eg74xp42P',
-      ethTransaction: '0x4f7b12bdc99e10a4abcdff9b1c70b58032fbb4c1ae5c96a1e43e7a63e0123a5b',
       unixTimestamp: 1556031914,
       appId: 'aea3c236-a1d8-48ed-a174-aceea19839e8',
       hashes: [{
         id: 'efba09b7-1a10-4673-b5d3-1e42d8715977',
         hash: 'QmRNRBDUT6MvSnA7pRHM7yPT8HMdzEzNHjs57TKNtQo8jQ'
-      }]
+      }],
+      blockchainTransactions: [{
+        blockchainNetwork: "ethereum goerli",
+        transactionHash: "0x4f7b12bdc99e10a4abcdff9b1c70b58032fbb4c1ae5c96a1e43e7a63e0123a5b",
+        explorers: [
+          "https://goerli.etherscan.io/tx/0x4f7b12bdc99e10a4abcdff9b1c70b58032fbb4c1ae5c96a1e43e7a63e0123a5b",
+          "https://blockscout.com/eth/goerli/tx/0x4f7b12bdc99e10a4abcdff9b1c70b58032fbb4c1ae5c96a1e43e7a63e0123a5b/internal_transactions"
+        ]
+      }
     }
   }],
   verified: 'latest'
@@ -362,14 +369,12 @@ should return:
   {
     id: '8c2ae6f9-d26e-49b1-b43d-ad516c87bf51',
     merkleRoot: 'QmR1XC1rT7Phd6NX3bA219orD4Pt4dmdGKmC5eg74xp42P',
-    ethTransaction: '0x8124b9427f27fa40cbbe797bdf6cc2c9b49bbc1d976f521fff142576fb86728c',
     unixTimestamp: 1556036504,
     appId: 'e36355b5-5595-4223-94c7-62d791ae6ed4'
   },
   {
     id: '2949af0a-9a51-4c8a-b15e-06c4dd5afe93',
     merkleRoot: 'QmQQkBSv66afHg4X6TqHMxdYnDyCd47kKWDytHksrydFuG',
-    ethTransaction: '0xb28a5d576ce463faf5925e5b9418340bc510ec8da2e8cd3137640960c0a82bd4',
     unixTimestamp: 1556037031,
     appId: 'e36355b5-5595-4223-94c7-62d791ae6ed4'
   },
@@ -400,13 +405,20 @@ should return:
 {
   id: '41954453-82b6-4885-8938-e4e1ecc2d0c3',
   merkleRoot: 'QmR1XC1rT7Phd6NX3bA219orD4Pt4dmdGKmC5eg74xp42P',
-  ethTransaction: '0x4f7b12bdc99e10a4abcdff9b1c70b58032fbb4c1ae5c96a1e43e7a63e0123a5b',
   unixTimestamp: 1556031914,
   appId: 'aea3c236-a1d8-48ed-a174-aceea19839e8',
   hashes: [{
     id: 'efba09b7-1a10-4673-b5d3-1e42d8715977',
     hash: 'QmRNRBDUT6MvSnA7pRHM7yPT8HMdzEzNHjs57TKNtQo8jQ'
-  }]
+  }],
+  blockchainTransactions: [{
+    blockchainNetwork: "ethereum goerli",
+    transactionHash: "0x4f7b12bdc99e10a4abcdff9b1c70b58032fbb4c1ae5c96a1e43e7a63e0123a5b",
+    explorers: [
+      "https://goerli.etherscan.io/tx/0x4f7b12bdc99e10a4abcdff9b1c70b58032fbb4c1ae5c96a1e43e7a63e0123a5b",
+      "https://blockscout.com/eth/goerli/tx/0x4f7b12bdc99e10a4abcdff9b1c70b58032fbb4c1ae5c96a1e43e7a63e0123a5b/internal_transactions"
+    ]
+  }
 }
 ```
 

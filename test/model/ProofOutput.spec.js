@@ -4,16 +4,15 @@ const random = require('../helpers/random');
 const TopazApi = require('../../src/topaz');
 
 describe('ProofOutput', function() {
-  var instance, proofId, merkleRoot, ethTransaction, unixTimestamp, appId;
+  var instance, proofId, merkleRoot, unixTimestamp, appId;
 
   beforeEach(function() {
     proofId = uuidv4();
     merkleRoot = random.sha256Base58Multihash();
-    ethTransaction = '0x' + random.sha256HexHash();
     unixTimestamp = Date.now();
     appId = uuidv4();
 
-    instance = new TopazApi.ProofOutput(proofId, merkleRoot, ethTransaction, unixTimestamp, appId);
+    instance = new TopazApi.ProofOutput(proofId, merkleRoot, unixTimestamp, appId);
   });
 
   it('should create an instance of ProofOutput', function() {
@@ -26,10 +25,6 @@ describe('ProofOutput', function() {
 
   it('should have the property merkleRoot (base name: "merkleRoot")', function() {
     expect(instance.merkleRoot).to.be(merkleRoot);
-  });
-
-  it('should have the property ethTransaction (base name: "ethTransaction")', function() {
-    expect(instance.ethTransaction).to.be(ethTransaction);
   });
 
   it('should have the property unixTimestamp (base name: "unixTimestamp")', function() {
