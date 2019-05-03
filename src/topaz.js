@@ -13,6 +13,7 @@ const ProofOutput = require('./model/ProofOutput');
 const HashOutputDetailed = require('./model/HashOutputDetailed');
 const ObjectOutputDetailed = require('./model/ObjectOutputDetailed');
 const ProofOutputDetailed = require('./model/ProofOutputDetailed');
+const BlockchainTransaction = require('./model/BlockchainTransaction');
 const HashesApi = require('./api/HashesApi');
 const ObjectsApi = require('./api/ObjectsApi');
 const ProofsApi = require('./api/ProofsApi');
@@ -93,6 +94,11 @@ var exports = {
    * @property {module:model/ProofOutputDetailed}
    */
   ProofOutputDetailed: ProofOutputDetailed,
+  /**
+   * The BlockchainTransaction model constructor.
+   * @property {module:model/BlockchainTransaction}
+   */
+  BlockchainTransaction: BlockchainTransaction,
   /**
    * The HashesApi service constructor.
    * @property {module:api/HashesApi}
