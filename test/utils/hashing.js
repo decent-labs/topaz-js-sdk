@@ -1,7 +1,7 @@
 const expect = require('expect.js');
 const setup = require('../helpers/setup');
 
-describe.only('Multihashing', () => {
+describe('Multihashing', () => {
   let topaz;
 
   beforeEach('get a fresh api instance', done => {
