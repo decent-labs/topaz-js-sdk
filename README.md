@@ -135,7 +135,7 @@ It should return:
           "https://goerli.etherscan.io/tx/0x4f7b12bdc99e10a4abcdff9b1c70b58032fbb4c1ae5c96a1e43e7a63e0123a5b",
           "https://blockscout.com/eth/goerli/tx/0x4f7b12bdc99e10a4abcdff9b1c70b58032fbb4c1ae5c96a1e43e7a63e0123a5b/internal_transactions"
         ]
-      }
+      }]
     }
   }],
   verified: 'latest'
