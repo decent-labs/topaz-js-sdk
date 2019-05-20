@@ -12,9 +12,9 @@ var exports = function(opts) {
   /**
    * The base URL against which to resolve every API call's (relative) path.
    * @type {String}
-   * @default https://sandbox.topaz.io/v1
+   * @default https://api.topaz.io/v1
    */
-  this.basePath = 'https://sandbox.topaz.io/v1'.replace(/\/+$/, '');
+  this.basePath = 'https://api.topaz.io/v1'.replace(/\/+$/, '');
   if (opts.basePath) this.basePath = opts.basePath
 
   /**
