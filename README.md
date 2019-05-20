@@ -2,8 +2,8 @@
 
 Javascript SDK for Topaz
 
-- API version: 0.1.22
-- Package version: 0.1.3
+- API version: 0.2.1
+- Package version: 0.2.0
 
 For more information, please visit [Topaz](https://topaz.io).
 
@@ -135,7 +135,7 @@ It should return:
           "https://goerli.etherscan.io/tx/0x4f7b12bdc99e10a4abcdff9b1c70b58032fbb4c1ae5c96a1e43e7a63e0123a5b",
           "https://blockscout.com/eth/goerli/tx/0x4f7b12bdc99e10a4abcdff9b1c70b58032fbb4c1ae5c96a1e43e7a63e0123a5b/internal_transactions"
         ]
-      }
+      }]
     }
   }],
   verified: 'latest'
