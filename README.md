@@ -3,7 +3,7 @@
 Javascript SDK for Topaz
 
 - API version: 0.2.1
-- Package version: 0.2.0
+- Package version: 0.2.1
 
 For more information, please visit [Topaz](https://topaz.io).
 
